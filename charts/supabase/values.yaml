@@ -106,6 +106,17 @@ db:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  persistence:
+    enabled: true
+  storage:
+    mountPath: /var/lib/postgresql/data
+    storageClassName: "microk8s-hostpath"
+    annotations: 
+      helm.sh/resource-policy: "keep"
+    size: 5Gi
+    accessModes:
+      - ReadWriteOnce
+    class: ""
 
 # Studio Application
 studio:
@@ -617,9 +628,11 @@ storage:
     #   memory: 128Mi
   persistence:
     enabled: true
-    storageClassName: ""
-    annotations: {}
-    size: 10Gi
+  storage:
+    storageClassName: "microk8s-hostpath"
+    annotations: 
+      helm.sh/resource-policy: "keep"
+    size: 5Gi
     accessModes:
       - ReadWriteOnce
     class: ""
