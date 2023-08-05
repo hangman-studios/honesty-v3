@@ -12,19 +12,19 @@
 # Anon & Service key: Studio, Storage, Kong
 # JWT Secret: Auth, Rest, Realtime, Storage
 jwt:
-  secretName: "JWT_SECRET_NAME"
+  secretName: "supabase-jwt"
 
 # smtp will be used to reference secret including smtp credentials
 smtp:
-  secretName: "SMTP_SECRET_NAME"
+  secretName: "supabase-smtp"
 
 # Optional: Postgres Database
 # A standalone Postgres database configured to work with Supabase services. 
 # You can spin up any other Postgres database container if required. 
 # If so, make sure to adjust DB_HOST accordingly to point to the right database service.
 db:
-  enabled: false # Disable the database provisioning
-  secretName: "DB_SECRET_NAME" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  enabled: true # Disable the database provisioning
+  secretName: "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
   image:
     repository: supabase/postgres
     pullPolicy: IfNotPresent
@@ -61,14 +61,14 @@ db:
     className: "nginx"
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
-      # cert-manager.io/cluster-issuer: "letsencrypt-staging"
-      # kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: DB.EXAMPLE.COM
+      - secretName: supabase-db.niiclas.de
         hosts:
-          - DB.EXAMPLE.COM
+          - supabase-db.niiclas.de
     hosts:
-      - host: DB.EXAMPLE.COM
+      - host: supabase-db.niiclas.de
         paths:
           - path: /
             pathType: Prefix
@@ -140,22 +140,22 @@ studio:
     type: ClusterIP
     port: 3000
   environment:
-    SUPABASE_URL: https://API.EXAMPLE.COM
-    SUPABASE_REST_URL: https://API.EXAMPLE.COM/rest/v1/
-    STUDIO_PG_META_URL: http://RELEASE_NAME-kong.NAMESPACE.svc.cluster.local:8000/pg
+    SUPABASE_URL: https://supabase-api.niiclas.de
+    SUPABASE_REST_URL: https://supabase-api.niiclas.de/rest/v1/
+    STUDIO_PG_META_URL: http://supabase-kong.supabase.svc.cluster.local:8000/pg
   ingress:
     enabled: true
     className: "nginx"
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
-      # cert-manager.io/cluster-issuer: "letsencrypt-staging"
-      # kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: STUDIO.EXAMPLE.COM
+      - secretName: supabase-studio.niiclas.de
         hosts:
-          - STUDIO.EXAMPLE.COM
+          - supabase-studio.niiclas.de
     hosts:
-      - host: STUDIO.EXAMPLE.COM
+      - host: supabase-studio.niiclas.de
         paths:
           - path: /
             pathType: Prefix
@@ -227,14 +227,14 @@ auth:
     type: ClusterIP
     port: 9999
   environment:
-    DB_HOST: DATABASE.NAMESPACE.svc.cluster.local
+    DB_HOST: supabase-db.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
     DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
     GOTRUE_API_HOST: "0.0.0.0"
     GOTRUE_API_PORT: "9999"
-    GOTRUE_SITE_URL: https://STUDIO.EXAMPLE.COM
+    GOTRUE_SITE_URL: https://supabase-studio.niiclas.de
     GOTRUE_URI_ALLOW_LIST: "*"
     GOTRUE_DISABLE_SIGNUP: "false"
     GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
@@ -249,10 +249,10 @@ auth:
     GOTRUE_SMTP_SENDER_NAME: "SMTP_SENDER_NAME"
     GOTRUE_EXTERNAL_PHONE_ENABLED: "false"
     GOTRUE_SMS_AUTOCONFIRM: "false"
-    GOTRUE_MAILER_URLPATHS_INVITE: "https://API.EXAMPLE.COM/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_CONFIRMATION: "https://API.EXAMPLE.COM/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_RECOVERY: "https://API.EXAMPLE.COM/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: "https://API.EXAMPLE.COM/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_INVITE: "https://supabase-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_CONFIRMATION: "https://supabase-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_RECOVERY: "https://supabase-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: "https://supabase-api.niiclas.de/auth/v1/verify"
   ingress:
     enabled: false
     className: ""
@@ -326,7 +326,7 @@ rest:
     type: ClusterIP
     port: 3000
   environment:
-    DB_HOST: DATABASE.NAMESPACE.svc.cluster.local
+    DB_HOST: supabase-db.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
@@ -407,7 +407,7 @@ realtime:
     type: ClusterIP
     port: 4000
   environment:
-    DB_HOST: DATABASE.NAMESPACE.svc.cluster.local
+    DB_HOST: supabase-db.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_NAME: postgres
     DB_SSL: "false"
@@ -491,7 +491,7 @@ meta:
     type: ClusterIP
     port: 8080
   environment:
-    DB_HOST: DATABASE.NAMESPACE.svc.cluster.local
+    DB_HOST: supabase-db.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
@@ -571,12 +571,12 @@ storage:
     type: ClusterIP
     port: 5000
   environment:
-    DB_HOST: DATABASE.NAMESPACE.svc.cluster.local
+    DB_HOST: supabase-db.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
     DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
-    POSTGREST_URL: http://RELEASE_NAME-rest.NAMESPACE.svc.cluster.local:3000
+    POSTGREST_URL: http://supabase-rest.supabase.svc.cluster.local:3000
     PGOPTIONS: -c search_path=storage,public
     FILE_SIZE_LIMIT: '52428800'
     STORAGE_BACKEND: file
@@ -676,14 +676,14 @@ kong:
     className: "nginx"
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
-      # cert-manager.io/cluster-issuer: "letsencrypt-staging"
-      # kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: API.EXAMPLE.COM
+      - secretName: supabase-api.niiclas.de
         hosts:
-          - API.EXAMPLE.COM
+          - supabase-api.niiclas.de
     hosts:
-      - host: API.EXAMPLE.COM
+      - host: supabase-api.niiclas.de
         paths:
           - path: /
             pathType: Prefix

@@ -23,19 +23,19 @@ cd supabase-kubernetes/charts/supabase/
 
 # Create JWT secret
 kubectl -n default create secret generic demo-supabase-jwt \
-  --from-literal=anonKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlIiwKICAgICJpYXQiOiAxNjc1NDAwNDAwLAogICAgImV4cCI6IDE4MzMxNjY4MDAKfQ.ztuiBzjaVoFHmoljUXWmnuDN6QU2WgJICeqwyzyZO88' \
-  --from-literal=serviceKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAic2VydmljZV9yb2xlIiwKICAgICJpc3MiOiAic3VwYWJhc2UiLAogICAgImlhdCI6IDE2NzU0MDA0MDAsCiAgICAiZXhwIjogMTgzMzE2NjgwMAp9.qNsmXzz4tG7eqJPh1Y58DbtIlJBauwpqx39UF-MwM8k' \
-  --from-literal=secret='abcdefghijklmnopqrstuvwxyz123456'
+  --from-literal=anonKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlIiwKICAgICJpYXQiOiAxNjkxMTg2NDAwLAogICAgImV4cCI6IDE4NDkwMzkyMDAKfQ.Ztlvz0iioEr7cbhTWSaYDCaGpAUKqvzliQbgcyONJZM' \
+  --from-literal=serviceKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAic2VydmljZV9yb2xlIiwKICAgICJpc3MiOiAic3VwYWJhc2UiLAogICAgImlhdCI6IDE2OTExODY0MDAsCiAgICAiZXhwIjogMTg0OTAzOTIwMAp9.JZPjeZUgWjvcoxNjrIyr3cFeKRhJU-N1xrEey5Thj8Q' \
+  --from-literal=secret='y4ymtt6cn8cn3z4hustxppqkbggfyz1743oy8wzm'
 
 # Create SMTP secret
 kubectl -n default create secret generic demo-supabase-smtp \
-  --from-literal=username='your-mail@example.com' \
-  --from-literal=password='example123456'
+  --from-literal=username='AKIAXBHYT2UHO6XBFXFH' \
+  --from-literal=password='BEk2xrY7qZTx/SoCqcfvl3CgH0kzp+hoRsd5SbaCKf+k'
 
 # Create DB secret
 kubectl -n default create secret generic demo-supabase-db \
   --from-literal=username='postgres' \
-  --from-literal=password='example123456' 
+  --from-literal=password='QX4V4J92zBWsfwHJfHsmb55Uhz' 
 
 # Install the chart
 helm -n default install demo -f values.example.yaml .
