@@ -54,7 +54,7 @@ db:
   service:
     type: ClusterIP
     port: 5432
-  environment:
+  # environment:
     # POSTGRES_HOST_AUTH_METHOD: md5
   ingress:
     enabled: false
@@ -86,7 +86,9 @@ db:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -97,6 +99,17 @@ db:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+  persistence:
+    enabled: true
+  storage:
+    mountPath: /var/lib/postgresql/data
+    storageClassName: "microk8s-hostpath"
+    annotations: 
+      helm.sh/resource-policy: "keep"
+    size: 2Gi
+    accessModes:
+      - ReadWriteOnce
+    class: ""
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -106,17 +119,6 @@ db:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-  persistence:
-    enabled: true
-  storage:
-    mountPath: /var/lib/postgresql/data
-    storageClassName: "microk8s-hostpath"
-    annotations: 
-      helm.sh/resource-policy: "keep"
-    size: 5Gi
-    accessModes:
-      - ReadWriteOnce
-    class: ""
 
 # Studio Application
 studio:
@@ -184,7 +186,9 @@ studio:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -242,7 +246,7 @@ auth:
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
-    DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
+    DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     GOTRUE_API_HOST: "0.0.0.0"
     GOTRUE_API_PORT: "9999"
     GOTRUE_SITE_URL: https://supabase-studio.niiclas.de
@@ -284,7 +288,9 @@ auth:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -341,7 +347,7 @@ rest:
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
-    DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
+    DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     PGRST_DB_SCHEMA: public,storage
     PGRST_DB_ANON_ROLE: anon
     PGRST_DB_USE_LEGACY_GUCS: "false"
@@ -365,7 +371,9 @@ rest:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -392,7 +400,7 @@ realtime:
   image:
     repository: supabase/realtime
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: "v2.10.1"
   imagePullSecrets: []
   nameOverride: ""
   fullnameOverride: "" 
@@ -407,13 +415,14 @@ realtime:
   podAnnotations: {}
   podSecurityContext: {}
     # fsGroup: 2000
-  securityContext: {}
+  securityContext:
     # capabilities:
     #   drop:
     #   - ALL
     # readOnlyRootFilesystem: true
     # runAsNonRoot: true
-    # runAsUser: 1000
+    allowPrivilegeEscalation: false
+    runAsUser: 0
   service:
     type: ClusterIP
     port: 4000
@@ -428,6 +437,14 @@ realtime:
     SECURE_CHANNELS: "true"
     SLOT_NAME: supabase_realtime_rls
     TEMPORARY_SLOT: "true"
+    SECRET_KEY_BASE: "UpNVntn3cDxHJpq99YMc1T1AQgQpc8kfYTuRgBiYa15BLrx8etQoXz3gZv1/u2oq"
+    DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
+    DB_ENC_KEY: supabaserealtime
+    FLY_ALLOC_ID: fly123
+    FLY_APP_NAME: realtime
+    ERL_AFLAGS: -proto_dist inet_tcp
+    ENABLE_TAILSCALE: "false"
+    DNS_NODES: "''"
   ingress:
     enabled: false
     className: ""
@@ -448,7 +465,9 @@ realtime:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -506,7 +525,7 @@ meta:
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
-    DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
+    DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     PG_META_PORT: "8080"
   ingress:
     enabled: false
@@ -528,7 +547,9 @@ meta:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources:
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -586,7 +607,7 @@ storage:
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
-    DB_SSL: allow # disable, allow, prefer, require, verify-ca, verify-full
+    DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     POSTGREST_URL: http://prod-supabase-rest.supabase.svc.cluster.local:3000
     PGOPTIONS: -c search_path=storage,public
     FILE_SIZE_LIMIT: '52428800'
@@ -615,7 +636,9 @@ storage:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources:
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -628,11 +651,10 @@ storage:
     #   memory: 128Mi
   persistence:
     enabled: true
-  storage:
     storageClassName: "microk8s-hostpath"
     annotations: 
       helm.sh/resource-policy: "keep"
-    size: 5Gi
+    size: 2Gi
     accessModes:
       - ReadWriteOnce
     class: ""
@@ -652,7 +674,7 @@ kong:
   image:
     repository: kong
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: "3.3"
   imagePullSecrets: []
   replicaCount: 1
   nameOverride: ""
@@ -668,7 +690,9 @@ kong:
   podAnnotations: {}
   podSecurityContext: {}
     # fsGroup: 2000
-  securityContext: {}
+  securityContext: 
+    allowPrivilegeEscalation: false
+    runAsUser: 0
     # capabilities:
     #   drop:
     #   - ALL
@@ -714,7 +738,9 @@ kong:
   #       items:
   #       - key: my_secret.txt
   #         path: name_of_file_in_container.txt
-  resources: {}
+  resources: 
+    limits:
+      ephemeral-storage: "128Mi"
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
