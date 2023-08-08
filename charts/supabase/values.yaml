@@ -157,7 +157,7 @@ studio:
     SUPABASE_REST_URL: https://supabase-api.niiclas.de/rest/v1/
     STUDIO_PG_META_URL: http://prod-supabase-kong.supabase.svc.cluster.local:8000/pg
   ingress:
-    enabled: true
+    enabled: false
     className: "nginx"
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
