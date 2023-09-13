@@ -30,7 +30,7 @@ db:
     pullPolicy: IfNotPresent
     tag: "latest"
   imagePullSecrets: []
-  replicaCount: 1
+  replicaCount: 2
   nameOverride: ""
   fullnameOverride: ""
   serviceAccount:
@@ -89,6 +89,7 @@ db:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 256Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -96,11 +97,11 @@ db:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
   persistence:
-    enabled: true
+    enabled: false
   storage:
     mountPath: /var/lib/postgresql/data
     storageClassName: "microk8s-hostpath"
@@ -111,7 +112,7 @@ db:
       - ReadWriteOnce
     class: ""
   autoscaling:
-    enabled: true
+    enabled: false
     minReplicas: 1
     maxReplicas: 100
     targetCPUUtilizationPercentage: 80
@@ -189,6 +190,7 @@ studio:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -196,9 +198,9 @@ studio:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -291,6 +293,7 @@ auth:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -298,9 +301,9 @@ auth:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -374,6 +377,7 @@ rest:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -381,9 +385,9 @@ rest:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -468,6 +472,7 @@ realtime:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 256Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -475,9 +480,9 @@ realtime:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -550,6 +555,7 @@ meta:
   resources:
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -557,9 +563,9 @@ meta:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -639,6 +645,7 @@ storage:
   resources:
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -646,9 +653,9 @@ storage:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   persistence:
     enabled: true
     storageClassName: "microk8s-hostpath"
@@ -741,6 +748,7 @@ kong:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
+      memory: 128Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -748,9 +756,9 @@ kong:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   autoscaling:
     enabled: true
     minReplicas: 1
