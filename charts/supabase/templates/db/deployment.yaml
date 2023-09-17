@@ -43,15 +43,12 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.secretName }}
-                  key: username
+              value: {{ .Values.db.userName }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.db.secretName }}
-                  key: password
+                  key: "superuser-password"
           ports:
             - name: http
               containerPort: 9999

@@ -38,10 +38,7 @@ spec:
             - name: DB_PORT
               value: {{ .Values.realtime.environment.DB_PORT | quote }}
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.secretName }}
-                  key: username
+              value: {{ .Values.db.userName }}
           command: ["/bin/sh", "-c"]
           args:
             - |
@@ -66,16 +63,13 @@ spec:
                   name: {{ include "supabase.realtime.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
-            - name: DB_USER
+            - name: POSTGRES_USER
+              value: {{ .Values.db.userName }}
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.db.secretName }}
-                  key: username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.secretName }}
-                  key: password
+                  key: "superuser-password"
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:

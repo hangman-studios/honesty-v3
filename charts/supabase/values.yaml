@@ -23,8 +23,9 @@ smtp:
 # You can spin up any other Postgres database container if required. 
 # If so, make sure to adjust DB_HOST accordingly to point to the right database service.
 db:
-  enabled: true # Disable the database provisioning
-  secretName: "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  enabled: false # Disable the database provisioning
+  secretName: "stackgres" # "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  userName: postgres
   image:
     repository: supabase/postgres
     pullPolicy: IfNotPresent

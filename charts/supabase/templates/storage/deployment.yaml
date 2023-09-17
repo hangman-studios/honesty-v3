@@ -39,10 +39,7 @@ spec:
             - name: DB_PORT
               value: {{ .Values.storage.environment.DB_PORT | quote }}
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.secretName }}
-                  key: username
+              value: {{ .Values.db.userName }}
           command: ["/bin/sh", "-c"]
           args:
             - |
@@ -66,15 +63,12 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.db.secretName }}
-                  key: username
+              value: {{ .Values.db.userName }}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.db.secretName }}
-                  key: password
+                  key: "superuser-password"
             - name: DATABASE_URL
               value: $(DB_DRIVER)://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_NAME)?search_path=auth&sslmode=$(DB_SSL)
             - name: PGRST_JWT_SECRET

@@ -1,0 +1,34 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: supabase-db
+spec:
+  instances: 2
+  primaryUpdateStrategy: unsupervised
+  # imageName: ghcr.io/jniclas/supabase-cloudnativedb:15.1.0.118
+  # resources: 
+  #   limits:
+  #     memory: '2Gi'
+  #     cpu: 1
+  #     'hugepages-2Mi': '1024Mi'
+  #   requests:
+  #     memory: '2Gi'
+  #     cpu: 1
+  #     'hugepages-2Mi': '1024Mi'
+  storage:
+    size: 1Gi
+    storageClass: mayastor
+  monitoring:
+    enablePodMonitor: true
+  # superuserSecret:
+  #   name: supabase-db
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      dataChecksums: true
+      encoding: 'UTF8'
+      # postInitApplicationSQLRefs:
+      #   configMapRefs:
+      #   - name: cloudnativedb-init-sql
+      #     key: configmap.sql

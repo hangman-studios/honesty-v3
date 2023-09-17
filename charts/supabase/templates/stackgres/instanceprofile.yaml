@@ -1,0 +1,78 @@
+# # apiVersion: stackgres.io/v1
+# # kind: SGInstanceProfile
+# # metadata:
+# #   name: size-small
+# # spec:
+# #   cpu: "500m"
+# #   memory: "512Mi"
+# # ---
+
+# apiVersion: stackgres.io/v1
+# kind: SGInstanceProfile
+# metadata:
+#   name: size-small
+# spec:
+#   containers:
+#     backup.create-backup:
+#       cpu: 101m
+#       memory: 256Mi
+#     cluster-controller:
+#       cpu: 102m
+#       memory: 512Mi
+#     dbops.run-dbops:
+#       cpu: 103m
+#       memory: 256Mi
+#     dbops.set-dbops-result:
+#       cpu: 104m
+#       memory: 256Mi
+#     distributedlogs-controller:
+#       cpu: 105m
+#       memory: 512Mi
+#     envoy:
+#       cpu: 106m
+#       memory: 64Mi
+#     fluent-bit:
+#       cpu: 63m
+#       memory: 64Mi
+#     fluentd:
+#       cpu: 107m
+#       memory: 512Mi
+#     pgbouncer:
+#       cpu: 108m
+#       memory: 64Mi
+#     postgres-util:
+#       cpu: 63m
+#       memory: 64Mi
+#     prometheus-postgres-exporter:
+#       cpu: 63m
+#       memory: 256Mi
+#   cpu: 309m
+#   initContainers:
+#     cluster-reconciliation-cycle:
+#       cpu: 110m
+#       memory: 512Mi
+#     dbops.set-dbops-running:
+#       cpu: 111m
+#       memory: 256Mi
+#     distributedlogs-reconciliation-cycle:
+#       cpu: 112m
+#       memory: 512Mi
+#     major-version-upgrade:
+#       cpu: 113m
+#       memory: 512Mi
+#     pgbouncer-auth-file:
+#       cpu: 114m
+#       memory: 512Mi
+#     relocate-binaries:
+#       cpu: 115m
+#       memory: 512Mi
+#     reset-patroni:
+#       cpu: 116m
+#       memory: 512Mi
+#     setup-arbitrary-user:
+#       cpu: 117m
+#       memory: 512Mi
+#     setup-scripts:
+#       cpu: 118m
+#       memory: 512Mi
+#   memory: 512Mi

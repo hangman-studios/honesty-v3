@@ -1,3 +1,25 @@
+# Prerequisites
+
+install Stackpres operator (on microk8s cluster with observability addon enabled)
+
+```
+helm install --create-namespace --namespace stackgres stackgres-operator \
+ --set grafana.autoEmbed=true \
+ --set-string grafana.webHost=kube-prom-stack-grafana.observability \
+ --set-string grafana.secretNamespace=observability \
+ --set-string grafana.secretName=kube-prom-stack-grafana \
+ --set-string grafana.secretUserKey=admin-user \
+ --set-string grafana.secretPasswordKey=admin-password \
+ stackgres-charts/stackgres-operator
+```
+
+# Deploy
+
+run in `charts/supabase/`
+```
+helm install prod -n supabase -f values.yaml .
+```
+
 # Supabase Kubernetes
 
 This repository contains the charts to deploy a [Supabase](https://github.com/supabase/supabase) instance inside a Kubernetes cluster using Helm 3.
