@@ -5,30 +5,30 @@ metadata:
 spec:
   instances: 2
   primaryUpdateStrategy: unsupervised
-  # imageName: ghcr.io/jniclas/supabase-cloudnativedb:15.1.0.118
-  # resources: 
-  #   limits:
-  #     memory: '2Gi'
-  #     cpu: 1
-  #     'hugepages-2Mi': '1024Mi'
-  #   requests:
-  #     memory: '2Gi'
-  #     cpu: 1
-  #     'hugepages-2Mi': '1024Mi'
+  imageName: ghcr.io/jniclas/supabase-cloudnativedb:15.1.0.118
+  resources: 
+    limits:
+      memory: 1Gi
+      cpu: 1
+      # 'hugepages-2Mi': 512Mi
+    requests:
+      memory: 1Gi
+      cpu: 1
+      # 'hugepages-2Mi': 512Mi
   storage:
-    size: 1Gi
-    storageClass: mayastor
+    size: 2Gi
+    storageClass: openebs-jiva-csi-default
   monitoring:
     enablePodMonitor: true
-  # superuserSecret:
-  #   name: supabase-db
+  superuserSecret:
+    name: supabase-db
   bootstrap:
     initdb:
       database: app
       owner: app
       dataChecksums: true
       encoding: 'UTF8'
-      # postInitApplicationSQLRefs:
-      #   configMapRefs:
-      #   - name: cloudnativedb-init-sql
-      #     key: configmap.sql
+      postInitApplicationSQLRefs:
+        configMapRefs:
+        - name: cloudnativedb-init-sql
+          key: configmap.sql

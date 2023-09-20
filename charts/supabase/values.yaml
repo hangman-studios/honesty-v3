@@ -105,10 +105,10 @@ db:
     enabled: false
   storage:
     mountPath: /var/lib/postgresql/data
-    storageClassName: "microk8s-hostpath"
+    storageClassName: "openebs-jiva-csi-default"
     annotations: 
       helm.sh/resource-policy: "keep"
-    size: 2Gi
+    size: 5Gi
     accessModes:
       - ReadWriteOnce
     class: ""
@@ -659,10 +659,10 @@ storage:
       memory: 128Mi
   persistence:
     enabled: true
-    storageClassName: "microk8s-hostpath"
+    storageClassName: "openebs-jiva-csi-default"
     annotations: 
       helm.sh/resource-policy: "keep"
-    size: 2Gi
+    size: 5Gi
     accessModes:
       - ReadWriteOnce
     class: ""
