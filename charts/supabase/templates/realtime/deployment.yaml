@@ -38,7 +38,10 @@ spec:
             - name: DB_PORT
               value: {{ .Values.realtime.environment.DB_PORT | quote }}
             - name: DB_USER
-              value: {{ .Values.db.userName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.secretName }}
+                  key: "username"
           command: ["/bin/sh", "-c"]
           args:
             - |
@@ -64,12 +67,15 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: POSTGRES_USER
-              value: {{ .Values.db.userName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.secretName }}
+                  key: "username"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.db.secretName }}
-                  key: "superuser-password"
+                  key: "password"
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:

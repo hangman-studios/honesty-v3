@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloudnativedb-init-sql
+  name: {{ include "supabase.db.fullname" . }}-init
 data:
  # drop role authenticator;
   configmap.sql: |

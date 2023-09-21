@@ -24,7 +24,7 @@ smtp:
 # If so, make sure to adjust DB_HOST accordingly to point to the right database service.
 db:
   enabled: false # Disable the database provisioning
-  secretName: "stackgres" # "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  secretName: "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
   userName: postgres
   image:
     repository: supabase/postgres
@@ -245,7 +245,7 @@ auth:
     type: ClusterIP
     port: 9999
   environment:
-    DB_HOST: prod-supabase-db.supabase.svc.cluster.local
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
@@ -347,7 +347,7 @@ rest:
     type: ClusterIP
     port: 3000
   environment:
-    DB_HOST: prod-supabase-db.supabase.svc.cluster.local
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
@@ -432,7 +432,7 @@ realtime:
     type: ClusterIP
     port: 4000
   environment:
-    DB_HOST: prod-supabase-db.supabase.svc.cluster.local
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_NAME: postgres
     DB_SSL: "false"
@@ -527,7 +527,7 @@ meta:
     type: ClusterIP
     port: 8080
   environment:
-    DB_HOST: prod-supabase-db.supabase.svc.cluster.local
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres
@@ -610,7 +610,7 @@ storage:
     type: ClusterIP
     port: 5000
   environment:
-    DB_HOST: prod-supabase-db.supabase.svc.cluster.local
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: postgres

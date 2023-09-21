@@ -1,11 +1,16 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: supabase-db
+  name: {{ include "supabase.db.fullname" . }}
+  labels:
+    {{- include "supabase.labels" . | nindent 4 }}
 spec:
   instances: 2
   primaryUpdateStrategy: unsupervised
   imageName: ghcr.io/jniclas/supabase-cloudnativedb:15.1.0.118
+  postgresql:
+    pg_hba:
+      - host all all all password
   resources: 
     limits:
       memory: 1Gi
@@ -21,14 +26,16 @@ spec:
   monitoring:
     enablePodMonitor: true
   superuserSecret:
-    name: supabase-db
+    name: {{ .Values.db.secretName }}
   bootstrap:
     initdb:
-      database: app
+      database: postrgres
       owner: app
+      secret:
+        name: {{ .Values.db.secretName }}
       dataChecksums: true
       encoding: 'UTF8'
       postInitApplicationSQLRefs:
         configMapRefs:
-        - name: cloudnativedb-init-sql
+        - name: {{ include "supabase.db.fullname" . }}-init
           key: configmap.sql
