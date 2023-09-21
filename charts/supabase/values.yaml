@@ -248,7 +248,7 @@ auth:
     DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
-    DB_NAME: postgres
+    DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     GOTRUE_API_HOST: "0.0.0.0"
     GOTRUE_API_PORT: "9999"
@@ -350,7 +350,7 @@ rest:
     DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
-    DB_NAME: postgres
+    DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     PGRST_DB_SCHEMA: public,storage
     PGRST_DB_ANON_ROLE: anon
@@ -434,7 +434,7 @@ realtime:
   environment:
     DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
-    DB_NAME: postgres
+    DB_NAME: app
     DB_SSL: "false"
     PORT: "4000"
     REPLICATION_MODE: RLS
@@ -530,7 +530,7 @@ meta:
     DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
-    DB_NAME: postgres
+    DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     PG_META_PORT: "8080"
   ingress:
@@ -613,7 +613,7 @@ storage:
     DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
-    DB_NAME: postgres
+    DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     POSTGREST_URL: http://prod-supabase-rest.supabase.svc.cluster.local:3000
     PGOPTIONS: -c search_path=storage,public
@@ -712,7 +712,7 @@ kong:
     port: 8000
   environment:
     KONG_DATABASE: "off"
-    KONG_DECLARATIVE_CONFIG: /home/kong/kong.yml
+    KONG_DECLARATIVE_CONFIG: /usr/local/kong/kong.yml
     # https://github.com/supabase/cli/issues/14
     KONG_DNS_ORDER: LAST,A,CNAME
     KONG_PLUGINS: request-transformer,cors,key-auth,acl
@@ -749,7 +749,7 @@ kong:
   resources: 
     limits:
       ephemeral-storage: "128Mi"
-      memory: 128Mi
+      memory: 512Mi
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -759,7 +759,7 @@ kong:
     #   memory: 128Mi
     requests:
       cpu: 100m
-      memory: 128Mi
+      memory: 512Mi
   autoscaling:
     enabled: true
     minReplicas: 1

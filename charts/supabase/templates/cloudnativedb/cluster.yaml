@@ -8,9 +8,30 @@ spec:
   instances: 2
   primaryUpdateStrategy: unsupervised
   imageName: ghcr.io/jniclas/supabase-cloudnativedb:15.1.0.118
+  # imagePullPolicy: Always
   postgresql:
+    # parameters:
+    #   ident_file: /postgresconf/pg_ident.conf
     pg_hba:
-      - host all all all password
+      - local all  supabase_admin      scram-sha-256
+      - local all  all                 peer map=supabase_map
+      - host  all  all  127.0.0.1/32   trust
+      - host  all  all  ::1/128        trust
+      - host  all  all  10.0.0.0/8     scram-sha-256
+      - host  all  all  172.16.0.0/12  scram-sha-256
+      - host  all  all  192.168.0.0/16 scram-sha-256
+      - host  all  all  0.0.0.0/0      scram-sha-256
+    
+    # pg_ident:
+    #   # MAPNAME       SYSTEM-USERNAME         PG-USERNAME
+    #   - supabase_map  postgres   postgres
+    #   - supabase_map  root       postgres
+    #   - supabase_map  ubuntu     postgres
+
+    #   # supabase-specific users
+    #   - supabase_map  gotrue     supabase_auth_admin
+    #   - supabase_map  postgrest  authenticator
+    #   - supabase_map  adminapi   postgres
   resources: 
     limits:
       memory: 1Gi
@@ -25,14 +46,14 @@ spec:
     storageClass: openebs-jiva-csi-default
   monitoring:
     enablePodMonitor: true
-  superuserSecret:
-    name: {{ .Values.db.secretName }}
+  # superuserSecret:
+  #   name: {{ include "supabase.db.fullname" . }}-superuser
   bootstrap:
     initdb:
-      database: postrgres
+      database: app
       owner: app
-      secret:
-        name: {{ .Values.db.secretName }}
+      # secret:
+      #   name: {{ include "supabase.db.fullname" . }}-superuser
       dataChecksums: true
       encoding: 'UTF8'
       postInitApplicationSQLRefs:

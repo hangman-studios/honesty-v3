@@ -45,12 +45,12 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.db.secretName }}
+                  name: {{ include "supabase.db.fullname" . }}-superuser
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.db.secretName }}
+                  name: {{ include "supabase.db.fullname" . }}-superuser
                   key: password
             - name: PG_META_DB_HOST
               value: $(DB_HOST)

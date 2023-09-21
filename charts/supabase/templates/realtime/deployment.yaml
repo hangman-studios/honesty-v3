@@ -40,7 +40,7 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.db.secretName }}
+                  name: {{ include "supabase.db.fullname" . }}-superuser
                   key: "username"
           command: ["/bin/sh", "-c"]
           args:
@@ -66,15 +66,15 @@ spec:
                   name: {{ include "supabase.realtime.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
-            - name: POSTGRES_USER
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.db.secretName }}
+                  name: {{ include "supabase.db.fullname" . }}-superuser
                   key: "username"
-            - name: POSTGRES_PASSWORD
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.db.secretName }}
+                  name: {{ include "supabase.db.fullname" . }}-superuser
                   key: "password"
             - name: JWT_SECRET
               valueFrom:
