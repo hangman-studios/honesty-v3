@@ -1,3 +1,10 @@
+# todos
+
+add release: kube-prom-stack to metadata.labels in PodMonitor
+https://stackoverflow.com/questions/75437313/prometheus-doesnt-discover-my-pod-monitor
+
+
+
 # Prerequisites
 
 install Stackpres operator (on microk8s cluster with observability addon enabled)

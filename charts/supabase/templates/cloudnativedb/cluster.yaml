@@ -45,7 +45,7 @@ spec:
     size: 2Gi
     storageClass: openebs-jiva-csi-default
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   # superuserSecret:
   #   name: {{ include "supabase.db.fullname" . }}-superuser
   bootstrap:
@@ -60,3 +60,14 @@ spec:
         configMapRefs:
         - name: {{ include "supabase.db.fullname" . }}-init
           key: configmap.sql
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ include "supabase.db.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      "cnpg.io/cluster": {{ include "supabase.db.fullname" . }}
+  podMetricsEndpoints:
+  - port: metrics
