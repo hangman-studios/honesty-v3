@@ -13,6 +13,7 @@ metadata:
 spec:
   {{- if .Values.storage.persistence.storageClassName }}
   storageClassName: {{ .Values.storage.persistence.storageClassName }}
+  # persistentVolumeReclaimPolicy: "Retain"
   {{- end }}
   accessModes:
   {{- range .Values.storage.persistence.accessModes }}

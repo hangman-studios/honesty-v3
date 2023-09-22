@@ -17,12 +17,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "supabase.db.fullname" . }}-dashboard
+  name: cnpg-dashboard
+  namespace: observability
   labels:
-    grafana_dashboard: "1"
+    grafana_dashboard: '1'
+  annotations:
+    k8s-sidecar-target-directory: "/tmp/dashboards/cnpg"
 data:
   cnp.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1884,7 +1887,7 @@ data:
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "This metric depends on exporting the: `topology.kubernetes.io/zone` label through kube-state-metrics (not enabled by default). Can be added by changing its configuration with:\n\n```yaml\nmetricLabelsAllowlist:\n  - nodes=[topology.kubernetes.io/zone]\n```",
+          "description": "This metric depends on exporting the: topology.kubernetes.io/zone label through kube-state-metrics (not enabled by default). Can be added by changing its configuration with:\n\nyaml\nmetricLabelsAllowlist:\n  - nodes=[topology.kubernetes.io/zone]\n",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5770,4 +5773,4 @@ data:
       "uid": "z7FCA4Nnk",
       "version": 9,
       "weekStart": ""
-    }
+    }`}}
