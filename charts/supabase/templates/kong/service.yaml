@@ -9,11 +9,12 @@ metadata:
     {{- range .Values.kong.ingress.hosts }}
     external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
     {{- end }}
+    external-dns.alpha.kubernetes.io/access: private
     external-dns.alpha.kubernetes.io/ttl: "30"
     external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
 spec:
   type: {{ .Values.kong.service.type }}
-  clusterIP: None
+  # clusterIP: None
   ports:
     - port: {{ .Values.kong.service.port }}
       targetPort: 8000
