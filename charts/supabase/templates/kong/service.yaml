@@ -5,8 +5,15 @@ metadata:
   name: {{ include "supabase.kong.fullname" . }}
   labels:
     {{- include "supabase.labels" . | nindent 4 }}
+  annotations:
+    {{- range .Values.kong.ingress.hosts }}
+    external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
+    {{- end }}
+    external-dns.alpha.kubernetes.io/ttl: "30"
+    external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
 spec:
   type: {{ .Values.kong.service.type }}
+  clusterIP: None
   ports:
     - port: {{ .Values.kong.service.port }}
       targetPort: 8000

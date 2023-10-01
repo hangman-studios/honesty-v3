@@ -57,6 +57,7 @@ spec:
           ports:
             - name: http
               containerPort: 8000
+              hostPort: 8000
               protocol: TCP
           {{- with .Values.kong.resources }}
           resources:
