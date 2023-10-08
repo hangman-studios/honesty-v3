@@ -252,7 +252,7 @@ auth:
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     GOTRUE_API_HOST: "0.0.0.0"
     GOTRUE_API_PORT: "9999"
-    GOTRUE_SITE_URL: https://supabase-studio.niiclas.de
+    GOTRUE_SITE_URL: https://honesty.niiclas.de # http://localhost:3000 
     GOTRUE_URI_ALLOW_LIST: "*"
     GOTRUE_DISABLE_SIGNUP: "false"
     GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
@@ -770,6 +770,109 @@ kong:
   tolerations: []
   affinity: {}
   config: {}
+
+frontend:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ghcr.io/jniclas/honesty
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "1.0.5"
+  imagePullSecrets: 
+    - name: githubregistry
+  nameOverride: ""
+  fullnameOverride: ""
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: "honesty"
+  podAnnotations: {}
+  podSecurityContext: {}
+    # fsGroup: 2000
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  environment:
+    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_PORT: "5432"
+    DB_DRIVER: postgres
+    API_EXTERNAL_URL: "https://supabase-api.niiclas.de"
+    DB_NAME: app
+    DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
+    PGRST_DB_SCHEMA: public
+  service:
+    type: NodePort
+    port: 3000
+    ws_port: 31111
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      kubernetes.io/tls-acme: "true"
+    tls:
+      - secretName: honesty.niiclas.de
+        hosts:
+          - honesty.niiclas.de
+    hosts:
+      - host: honesty.niiclas.de
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: api
+              servicePort: 80
+  ws_ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      kubernetes.io/tls-acme: "true"
+    tls:
+      - secretName: ws-honesty.niiclas.de
+        hosts:
+          - ws-honesty.niiclas.de
+    hosts:
+      - host: ws-honesty.niiclas.de
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: api
+              servicePort: 80
+  resources:
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 500m
+    #   memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
   #   _format_version: "1.1"
 
   #   ###

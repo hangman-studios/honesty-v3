@@ -1,0 +1,124 @@
+{{- if .Values.kong.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "supabase.frontend.fullname" . }}
+  labels:
+    {{- include "supabase.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.frontend.autoscaling.enabled }}
+  replicas: {{ .Values.frontend.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "supabase.frontend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.frontend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "supabase.frontend.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.frontend.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "supabase.frontend.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.frontend.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.frontend.securityContext | nindent 12 }}
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          env:
+            {{- range $key, $value := .Values.frontend.environment }}
+            - name: {{ $key }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "supabase.frontend.fullname" $ }}
+                  key: {{ $key }}
+            {{- end }}
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "supabase.db.fullname" . }}-superuser
+                  key: "username"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "supabase.db.fullname" . }}-superuser
+                  key: "password"
+            - name: DATABASE_URL
+              value: $(DB_DRIVER)://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=$(DB_SSL)
+            - name: WEB_PUSH_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-web-push
+                  key: "webPushPrivateKey"
+            - name: NUXT_PUBLIC_WEB_PUSH_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-web-push
+                  key: "webPushPublicKey"
+            - name: WEB_PUSH_SUBJECT
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-web-push
+                  key: "webPushSubject"
+            - name: REALTIME_SERVICE_URL
+              value: http://{{ include "supabase.realtime.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:4000/
+            - name: META_SERVICE_URL
+              value: http://{{ include "supabase.meta.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8080/
+            - name: REALTIME_SERVICE
+              value: {{ include "supabase.realtime.fullname" . }}
+            # - name: JWT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: {{ .Values.jwt.secretName }}
+            #       key: secret
+            - name: API_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jwt.secretName }}
+                  key: secret
+            - name: SUPABASE_ANON_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jwt.secretName }}
+                  key: anonKey
+            - name: SUPABASE_SERVICE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.jwt.secretName }}
+                  key: serviceKey
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
+      {{- with .Values.frontend.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.frontend.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.frontend.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

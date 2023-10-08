@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "https": "nuxt dev  --https",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/supabase": "1.1.3",
+    "@types/node": "^18.16.19",
+    "nuxt": "^3.6.2",
+    "supabase": "^1.99.5"
+  },
+  "dependencies": {
+    "web-push": "^3.6.3"
+  }
+}

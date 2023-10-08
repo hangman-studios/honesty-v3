@@ -187,3 +187,27 @@ kong:
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
 ```
+
+## temporarly
+
+    -- add tenant
+    -- {{ $jwtsecret := (lookup "v1" "Secret" .Release.Namespace "supabase-jwt") }}
+    -- {{ $dbsecretname := print (include "supabase.db.fullname" .) "-superuser" }}
+    -- {{ $dbsecret := (lookup "v1" "Secret" .Release.Namespace $dbsecretname) }}
+    -- INSERT INTO _realtime.tenants
+    --     (id, name, external_id, jwt_secret, inserted_at, updated_at)
+    -- VALUES (extensions.uuid_generate_v4(), '{{ include "supabase.realtime.fullname" . }}', '{{ include "supabase.realtime.fullname" . }}',
+    --         '{{ index $jwtsecret.data "secret" | b64dec }}', NOW(), NOW());
+    -- INSERT INTO _realtime.extensions
+    --     (id, type, settings, tenant_external_id, inserted_at, updated_at)
+    -- VALUES (extensions.uuid_generate_v4(), 'postgres_cdc_rls',
+    --         json_build_object(
+    --                 'db_name', 'app',
+    --                 'db_host', '{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace . }}.svc.cluster.local',
+    --                 'db_user', '{{ index $dbsecret.data "username" | b64dec }}',
+    --                 'db_password', '{{ index $dbsecret.data "password" | b64dec }}',
+    --                 'db_port', '5432',
+    --                 'poll_interval_ms', 100,
+    --                 'poll_max_record_bytes', 1048576,
+    --                 'ip_version', 4
+    --             ), '{{ include "supabase.realtime.fullname" . }}', NOW(), NOW())
