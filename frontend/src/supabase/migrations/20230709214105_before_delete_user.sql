@@ -9,6 +9,6 @@ begin
 end;
 $$;
 
-create trigger before_delete_user
+create or replace trigger before_delete_user
   before delete on auth.users
   for each row execute function public.delete_old_profile();

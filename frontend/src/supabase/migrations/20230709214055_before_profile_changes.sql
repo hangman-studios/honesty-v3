@@ -24,6 +24,6 @@ begin
 end;
 $$;
 
-create trigger before_profile_changes
+create or replace trigger before_profile_changes
   before update of avatar_url or delete on public.profiles
   for each row execute function public.delete_old_avatar();

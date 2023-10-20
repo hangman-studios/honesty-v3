@@ -4,6 +4,18 @@ add release: kube-prom-stack to metadata.labels in PodMonitor
 https://stackoverflow.com/questions/75437313/prometheus-doesnt-discover-my-pod-monitor
 
 
+maybe try 
+https://stackoverflow.com/questions/52432191/auto-import-in-visual-studio-code-only-offering-absolute-path-with-lerna-subpack
+```
+ "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "holograph/src/*": ["src/*"]
+    },
+  }
+```
+
+
 
 # Prerequisites
 

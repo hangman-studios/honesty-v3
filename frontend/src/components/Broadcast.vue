@@ -1,34 +1,16 @@
 <script setup lang="ts">
 import type { RealtimeChannel } from '@supabase/supabase-js'
 import type { Database } from '../types/database.types'
-const client = useSupabaseClient<Database>()
-const message = useRef('');
-let realtimeChannel: RealtimeChannel
 
-const { pending, data: endpoints, refresh: refreshEndpoints, status } = await useAsyncData('notification_states', async () => {
-    const { data } = await client.from('notification_states').select("endpoint")
-    return data
-})
+const message = useRef('')
 
 const broadcast = async () => {
-    endpoints.value?.forEach(endpoint => {
-
-    })
+    const { body } = await $fetch('/api/notify', {
+    method: 'post',
+    body: { title: message.value, room_id: 0 }
+  })
 }
 
-onMounted(() => {
-    // Real time listener for new workouts
-    realtimeChannel = client.channel('public:notification_states').on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'rooms' },
-        () => refreshEndpoints()
-    )
-    realtimeChannel.subscribe()
-})
-// Don't forget to unsubscribe when user left the page
-onUnmounted(() => {
-    client.removeChannel(realtimeChannel)
-})
 </script>
 <template>
     <div>

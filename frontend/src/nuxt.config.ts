@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     serviceKey: process.env.SUPABASE_SERVICE_KEY,
   },
   runtimeConfig: {
+    webPushPrivateKey: '',
+    webPushSubject: '',
     public: {
       webPushPublicKey: '',
     }
