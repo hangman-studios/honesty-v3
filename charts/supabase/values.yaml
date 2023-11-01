@@ -12,11 +12,14 @@
 # Anon & Service key: Studio, Storage, Kong
 # JWT Secret: Auth, Rest, Realtime, Storage
 jwt:
-  secretName: "supabase-jwt"
+  secretName: "{{ tpl .Values.applicationName . }}-jwt"
 
 # smtp will be used to reference secret including smtp credentials
 smtp:
-  secretName: "supabase-smtp"
+  secretName: "{{ tpl .Values.applicationName . }}-smtp"
+
+
+applicationName: polls
 
 # Optional: Postgres Database
 # A standalone Postgres database configured to work with Supabase services. 
@@ -24,7 +27,7 @@ smtp:
 # If so, make sure to adjust DB_HOST accordingly to point to the right database service.
 db:
   enabled: false # Disable the database provisioning
-  secretName: "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  secretName: "{{ tpl .Values.applicationName . }}-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
   userName: postgres
   image:
     repository: supabase/postgres
@@ -65,11 +68,11 @@ db:
       cert-manager.io/cluster-issuer: "letsencrypt"
       kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: supabase-db.niiclas.de
+      - secretName: {{ tpl .Values.applicationName . }}-db.niiclas.de
         hosts:
-          - supabase-db.niiclas.de
+          - {{ tpl .Values.applicationName . }}-db.niiclas.de
     hosts:
-      - host: supabase-db.niiclas.de
+      - host: {{ tpl .Values.applicationName . }}-db.niiclas.de
         paths:
           - path: /
             pathType: Prefix
@@ -155,9 +158,9 @@ studio:
     type: ClusterIP
     port: 3000
   environment:
-    SUPABASE_URL: https://supabase-api.niiclas.de
-    SUPABASE_REST_URL: https://supabase-api.niiclas.de/rest/v1/
-    STUDIO_PG_META_URL: http://prod-supabase-kong.supabase.svc.cluster.local:8000/pg
+    SUPABASE_URL: https://{{ tpl .Values.applicationName . }}-api.niiclas.de
+    SUPABASE_REST_URL: https://{{ tpl .Values.applicationName . }}-api.niiclas.de/rest/v1/
+    STUDIO_PG_META_URL: http://{{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-kong.{{ tpl .Release.Namespace . }}.svc.cluster.local:8000/pg
   ingress:
     enabled: false
     className: "nginx"
@@ -166,11 +169,11 @@ studio:
       cert-manager.io/cluster-issuer: "letsencrypt"
       kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: supabase-studio.niiclas.de
+      - secretName: {{ tpl .Values.applicationName . }}-studio.niiclas.de
         hosts:
-          - supabase-studio.niiclas.de
+          - {{ tpl .Values.applicationName . }}-studio.niiclas.de
     hosts:
-      - host: supabase-studio.niiclas.de
+      - host: {{ tpl .Values.applicationName . }}-studio.niiclas.de
         paths:
           - path: /
             pathType: Prefix
@@ -245,14 +248,14 @@ auth:
     type: ClusterIP
     port: 9999
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     GOTRUE_API_HOST: "0.0.0.0"
     GOTRUE_API_PORT: "9999"
-    GOTRUE_SITE_URL: https://honesty.niiclas.de # http://localhost:3000 
+    GOTRUE_SITE_URL: https://{{ tpl .Values.applicationName . }}.niiclas.de # http://localhost:3000 
     GOTRUE_URI_ALLOW_LIST: "*"
     GOTRUE_DISABLE_SIGNUP: "false"
     GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
@@ -267,10 +270,10 @@ auth:
     GOTRUE_SMTP_SENDER_NAME: "Info"
     GOTRUE_EXTERNAL_PHONE_ENABLED: "false"
     GOTRUE_SMS_AUTOCONFIRM: "false"
-    GOTRUE_MAILER_URLPATHS_INVITE: "https://supabase-api.niiclas.de/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_CONFIRMATION: "https://supabase-api.niiclas.de/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_RECOVERY: "https://supabase-api.niiclas.de/auth/v1/verify"
-    GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: "https://supabase-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_INVITE: "https://{{ tpl .Values.applicationName . }}-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_CONFIRMATION: "https://{{ tpl .Values.applicationName . }}-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_RECOVERY: "https://{{ tpl .Values.applicationName . }}-api.niiclas.de/auth/v1/verify"
+    GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: "https://{{ tpl .Values.applicationName . }}-api.niiclas.de/auth/v1/verify"
   ingress:
     enabled: false
     className: ""
@@ -347,7 +350,7 @@ rest:
     type: ClusterIP
     port: 3000
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: app
@@ -432,7 +435,7 @@ realtime:
     type: ClusterIP
     port: 4000
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_NAME: app
     DB_SSL: "false"
@@ -527,7 +530,7 @@ meta:
     type: ClusterIP
     port: 8080
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: app
@@ -610,12 +613,12 @@ storage:
     type: ClusterIP
     port: 5000
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
     DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
-    POSTGREST_URL: http://prod-supabase-rest.supabase.svc.cluster.local:3000
+    POSTGREST_URL: http://{{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-rest.{{ tpl .Release.Namespace . }}.svc.cluster.local:3000
     PGOPTIONS: -c search_path=storage,public
     FILE_SIZE_LIMIT: '52428800'
     STORAGE_BACKEND: file
@@ -724,11 +727,11 @@ kong:
       cert-manager.io/cluster-issuer: "letsencrypt"
       kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: supabase-api.niiclas.de
+      - secretName: {{ tpl .Values.applicationName . }}-api.niiclas.de
         hosts:
-          - supabase-api.niiclas.de
+          - {{ tpl .Values.applicationName . }}-api.niiclas.de
     hosts:
-      - host: supabase-api.niiclas.de
+      - host: {{ tpl .Values.applicationName . }}-api.niiclas.de
         paths:
           - path: /
             pathType: Prefix
@@ -802,10 +805,10 @@ frontend:
     # runAsNonRoot: true
     # runAsUser: 1000
   environment:
-    DB_HOST: prod-supabase-db-rw.supabase.svc.cluster.local
+    DB_HOST: {{ tpl .Release.Name . }}-{{ tpl .Values.applicationName . }}-db-rw.{{ tpl .Release.Namespace . }}.svc.cluster.local
     DB_PORT: "5432"
     DB_DRIVER: postgres
-    API_EXTERNAL_URL: "https://supabase-api.niiclas.de"
+    API_EXTERNAL_URL: "https://{{ tpl .Values.applicationName . }}-api.niiclas.de"
     DB_NAME: app
     DB_SSL: disable # disable, allow, prefer, require, verify-ca, verify-full
     PGRST_DB_SCHEMA: public
@@ -822,37 +825,37 @@ frontend:
       cert-manager.io/cluster-issuer: "letsencrypt"
       kubernetes.io/tls-acme: "true"
     tls:
-      - secretName: honesty.niiclas.de
+      - secretName: {{ tpl .Values.applicationName . }}.niiclas.de
         hosts:
-          - honesty.niiclas.de
+          - {{ tpl .Values.applicationName . }}.niiclas.de
     hosts:
-      - host: honesty.niiclas.de
+      - host: {{ tpl .Values.applicationName . }}.niiclas.de
         paths:
           - path: /
             pathType: Prefix
             backend:
               serviceName: api
               servicePort: 80
-  ws_ingress:
-    enabled: true
-    className: "nginx"
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/rewrite-target: /
-      cert-manager.io/cluster-issuer: "letsencrypt"
-      kubernetes.io/tls-acme: "true"
-    tls:
-      - secretName: ws-honesty.niiclas.de
-        hosts:
-          - ws-honesty.niiclas.de
-    hosts:
-      - host: ws-honesty.niiclas.de
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              serviceName: api
-              servicePort: 80
+  # ws_ingress:
+  #   enabled: true
+  #   className: "nginx"
+  #   annotations:
+  #     kubernetes.io/ingress.class: nginx
+  #     nginx.ingress.kubernetes.io/rewrite-target: /
+  #     cert-manager.io/cluster-issuer: "letsencrypt"
+  #     kubernetes.io/tls-acme: "true"
+  #   tls:
+  #     - secretName: ws-{{ tpl .Values.applicationName . }}.niiclas.de
+  #       hosts:
+  #         - ws-{{ tpl .Values.applicationName . }}.niiclas.de
+  #   hosts:
+  #     - host: ws-{{ tpl .Values.applicationName . }}.niiclas.de
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #           backend:
+  #             serviceName: api
+  #             servicePort: 80
   resources:
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
