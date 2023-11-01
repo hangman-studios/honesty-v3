@@ -1,27 +1,27 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: ws-{{ include "supabase.frontend.fullname" . }}
-#   labels:
-#     {{- include "supabase.labels" . | nindent 4 }}
-#   annotations:
-#     {{- range .Values.frontend.ws_ingress.hosts }}
-#     external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
-#     {{- end }}
-#     external-dns.alpha.kubernetes.io/access: private
-#     external-dns.alpha.kubernetes.io/ttl: "30"
-#     external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
-# spec:
-#   type: {{ .Values.frontend.service.type }}
-#   ports:
-#     - port: {{ .Values.frontend.service.ws_port }}
-#       nodePort: 31111
-#       targetPort: 31111
-#       protocol: TCP
-#       name: ws
-#     # - port: 31111
-#     #   targetPort: 31111
-#     #   protocol: TCP
-#     #   name: wss
-#   selector:
-#     {{- include "supabase.frontend.selectorLabels" . | nindent 4 }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: ws-{{ include "supabase.frontend.fullname" . }}
+  labels:
+    {{- include "supabase.labels" . | nindent 4 }}
+  annotations:
+    {{- range .Values.frontend.ws_ingress.hosts }}
+    external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
+    {{- end }}
+    external-dns.alpha.kubernetes.io/access: private
+    external-dns.alpha.kubernetes.io/ttl: "30"
+    external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+    - port: {{ .Values.frontend.service.ws_port }}
+      nodePort: 31111
+      targetPort: 31111
+      protocol: TCP
+      name: ws
+    # - port: 31111
+    #   targetPort: 31111
+    #   protocol: TCP
+    #   name: wss
+  selector:
+    {{- include "supabase.frontend.selectorLabels" . | nindent 4 }}
