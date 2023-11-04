@@ -34,9 +34,9 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_HOST
-              value: {{ .Values.realtime.environment.DB_HOST | quote }}
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
-              value: {{ .Values.realtime.environment.DB_PORT | quote }}
+              value: "5432"
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -67,7 +67,7 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: DB_HOST
-              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DRIVER

@@ -53,7 +53,7 @@ spec:
                   name: {{ include "supabase.db.fullname" . }}-superuser
                   key: password
             - name: DB_HOST
-              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DRIVER

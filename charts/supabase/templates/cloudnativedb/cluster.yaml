@@ -48,6 +48,7 @@ spec:
     enablePodMonitor: false
   # superuserSecret:
   #   name: {{ include "supabase.db.fullname" . }}-superuser
+  enableSuperuserAccess: true
   bootstrap:
     initdb:
       database: app

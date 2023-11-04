@@ -43,7 +43,7 @@ spec:
             - name: API_EXTERNAL_URL
               value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}"
             - name: DB_HOST
-              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DRIVER
@@ -80,9 +80,9 @@ spec:
                   name: {{ include "supabase.secret.fullname" . }}-web-push
                   key: "webPushSubject"
             - name: REALTIME_SERVICE_URL
-              value: http://{{ include "supabase.realtime.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:4000/
+              value: http://{{ include "supabase.realtime.fullname" . }}:4000/
             - name: META_SERVICE_URL
-              value: http://{{ include "supabase.meta.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8080/
+              value: http://{{ include "supabase.meta.fullname" . }}:8080/
             - name: REALTIME_SERVICE
               value: {{ include "supabase.realtime.fullname" . }}
             # - name: JWT_SECRET

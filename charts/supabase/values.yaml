@@ -17,6 +17,14 @@ application:
   # it gets prefixed with release name
   # like "dev-polls.niiclas.de", "dev-polls-api.niiclas.de" etc.
 
+secret:
+  nameOverride: ""
+  fullnameOverride: ""
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
 # Optional: Postgres Database
 # A standalone Postgres database configured to work with Supabase services. 
 # You can spin up any other Postgres database container if required. 

@@ -35,9 +35,9 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_HOST
-              value: {{ .Values.storage.environment.DB_HOST | quote }}
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
-              value: {{ .Values.storage.environment.DB_PORT | quote }}
+              value: "5432"
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -66,7 +66,7 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: DB_HOST
-              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DRIVER
@@ -76,7 +76,7 @@ spec:
             - name: DB_SSL
               value: disable # disable, allow, prefer, require, verify-ca, verify-full
             - name: POSTGREST_URL
-              value: http://{{ include "supabase.rest.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:3000
+              value: http://{{ include "supabase.rest.fullname" . }}:3000
             - name: DB_USER
               valueFrom:
                 secretKeyRef:

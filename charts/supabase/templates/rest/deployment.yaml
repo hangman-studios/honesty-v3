@@ -43,7 +43,7 @@ spec:
                   key: {{ $key }}
             {{- end }}
             - name: DB_HOST
-              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ include "supabase.db.fullname" . }}-rw" # "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DRIVER
@@ -73,6 +73,14 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /rest/v1
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /rest/v1
+          #     port: http
           {{- with .Values.rest.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

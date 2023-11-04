@@ -47,7 +47,7 @@ spec:
             - name: SUPABASE_REST_URL
               value: https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/rest/v1/
             - name: STUDIO_PG_META_URL
-              value: http://{{ include "supabase.kong.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8000/pg
+              value: http://{{ include "supabase.kong.fullname" . }}:8000/pg
             - name: SUPABASE_ANON_KEY
               valueFrom:
                 secretKeyRef:
