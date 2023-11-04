@@ -6,9 +6,7 @@ metadata:
   labels:
     {{- include "supabase.labels" . | nindent 4 }}
   annotations:
-    {{- range .Values.kong.ingress.hosts }}
-    external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
-    {{- end }}
+    external-dns.alpha.kubernetes.io/hostname: "{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}"
     external-dns.alpha.kubernetes.io/access: private
     external-dns.alpha.kubernetes.io/ttl: "30"
     external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
@@ -17,7 +15,7 @@ spec:
   # clusterIP: None
   ports:
     - port: {{ .Values.kong.service.port }}
-      targetPort: 8000
+      targetPort: {{ .Values.kong.service.port }}
       protocol: TCP
       name: http
   selector:

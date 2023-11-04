@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.auth.service.type }}
   ports:
     - port: {{ .Values.auth.service.port }}
-      targetPort: 9999
+      targetPort: {{ .Values.auth.service.port }}
       protocol: TCP
       name: http
   selector:

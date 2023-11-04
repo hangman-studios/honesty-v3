@@ -64,6 +64,26 @@ spec:
                   name: {{ include "supabase.auth.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
+            - name: DB_HOST
+              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DRIVER
+              value: postgres
+            - name: DB_NAME
+              value: app
+            - name: DB_SSL
+              value: disable # disable, allow, prefer, require, verify-ca, verify-full
+            - name: GOTRUE_SITE_URL
+              value: https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}.{{ .Values.domain.name }} # http://localhost:3000 
+            - name: GOTRUE_MAILER_URLPATHS_INVITE
+              value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/auth/v1/verify"
+            - name: GOTRUE_MAILER_URLPATHS_CONFIRMATION
+              value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/auth/v1/verify"
+            - name: GOTRUE_MAILER_URLPATHS_RECOVERY
+              value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/auth/v1/verify"
+            - name: GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE
+              value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/auth/v1/verify"
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -81,17 +101,17 @@ spec:
             - name: GOTRUE_JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: secret
             - name: GOTRUE_SMTP_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.smtp.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-smtp
                   key: username
             - name: GOTRUE_SMTP_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.smtp.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-smtp
                   key: password
           ports:
             - name: http

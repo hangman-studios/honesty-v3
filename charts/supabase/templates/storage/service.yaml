@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.storage.service.type }}
   ports:
     - port: {{ .Values.storage.service.port }}
-      targetPort: 5000
+      targetPort: {{ .Values.storage.service.port }}
       protocol: TCP
       name: http
   selector:

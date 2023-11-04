@@ -21,10 +21,8 @@ spec:
       labels:
         {{- include "supabase.frontend.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.frontend.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: {{ include "supabase.secret.fullname" . }}-githubregistry
       serviceAccountName: {{ include "supabase.frontend.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.frontend.podSecurityContext | nindent 8 }}
@@ -42,6 +40,18 @@ spec:
                   name: {{ include "supabase.frontend.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
+            - name: API_EXTERNAL_URL
+              value: "https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}"
+            - name: DB_HOST
+              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DRIVER
+              value: postgres
+            - name: DB_NAME
+              value: app
+            - name: DB_SSL
+              value: disable # disable, allow, prefer, require, verify-ca, verify-full
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -57,17 +67,17 @@ spec:
             - name: NUXT_WEB_PUSH_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: supabase-web-push
+                  name: {{ include "supabase.secret.fullname" . }}-web-push
                   key: "webPushPrivateKey"
             - name: NUXT_PUBLIC_WEB_PUSH_PUBLIC_KEY
               valueFrom:
                 secretKeyRef:
-                  name: supabase-web-push
+                  name: {{ include "supabase.secret.fullname" . }}-web-push
                   key: "webPushPublicKey"
             - name: NUXT_WEB_PUSH_SUBJECT
               valueFrom:
                 secretKeyRef:
-                  name: supabase-web-push
+                  name: {{ include "supabase.secret.fullname" . }}-web-push
                   key: "webPushSubject"
             - name: REALTIME_SERVICE_URL
               value: http://{{ include "supabase.realtime.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:4000/
@@ -78,22 +88,22 @@ spec:
             # - name: JWT_SECRET
             #   valueFrom:
             #     secretKeyRef:
-            #       name: {{ .Values.jwt.secretName }}
+            #       name: {{ include "supabase.secret.fullname" . }}-jwt
             #       key: secret
             - name: API_JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: secret
             - name: SUPABASE_ANON_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: anonKey
             - name: SUPABASE_SERVICE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: serviceKey
           ports:
             - name: http

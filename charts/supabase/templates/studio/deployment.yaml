@@ -42,15 +42,21 @@ spec:
                   name: {{ include "supabase.studio.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
+            - name: SUPABASE_URL
+              value: https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}
+            - name: SUPABASE_REST_URL
+              value: https://{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}-api.{{ .Values.domain.name }}/rest/v1/
+            - name: STUDIO_PG_META_URL
+              value: http://{{ include "supabase.kong.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8000/pg
             - name: SUPABASE_ANON_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: anonKey
             - name: SUPABASE_SERVICE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: serviceKey
           ports:
             - name: http

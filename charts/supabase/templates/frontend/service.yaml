@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "supabase.labels" . | nindent 4 }}
   annotations:
-    {{- range .Values.frontend.ingress.hosts }}
-    external-dns.alpha.kubernetes.io/hostname: {{ .host | quote }}
-    {{- end }}
+    external-dns.alpha.kubernetes.io/hostname: "{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}.{{ .Values.domain.name }}"
     external-dns.alpha.kubernetes.io/access: private
     external-dns.alpha.kubernetes.io/ttl: "30"
     external-dns.alpha.kubernetes.io/endpoints-type: HostIP # NodeExternalIP
@@ -15,12 +13,8 @@ spec:
   type: {{ .Values.frontend.service.type }}
   ports:
     - port: {{ .Values.frontend.service.port }}
-      targetPort: 3000
+      targetPort: {{ .Values.frontend.service.port }}
       protocol: TCP
       name: http
-    # - port: 31111
-    #   targetPort: 31111
-    #   protocol: TCP
-    #   name: wss
   selector:
     {{- include "supabase.frontend.selectorLabels" . | nindent 4 }}

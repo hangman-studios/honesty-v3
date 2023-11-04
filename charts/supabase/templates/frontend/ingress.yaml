@@ -1,68 +1,32 @@
+{{- if .Values.frontend.enabled -}}
 {{- if .Values.frontend.ingress.enabled -}}
-{{- $fullName := include "supabase.frontend.fullname" . -}}
-{{- $svcPort := .Values.frontend.service.port -}}
-{{- if and .Values.frontend.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.frontend.ingress.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.frontend.ingress.annotations "kubernetes.io/ingress.class" .Values.frontend.ingress.className}}
-  {{- end }}
-{{- end }}
-{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
-{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "supabase.frontend.fullname" . }}
   labels:
     {{- include "supabase.labels" . | nindent 4 }}
-  {{- with .Values.frontend.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt"
+    kubernetes.io/tls-acme: "true"
 spec:
-  {{- if and .Values.frontend.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
-  ingressClassName: {{ .Values.frontend.ingress.className }}
-  {{- end }}
-  {{- if .Values.frontend.ingress.tls }}
+  ingressClassName: "nginx"
   tls:
-    {{- range .Values.frontend.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
-  {{- end }}
+        - "{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}.{{ .Values.domain.name }}"
+      secretName: "{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}.{{ .Values.domain.name }}"
   rules:
-    {{- range .Values.frontend.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: "{{ if ne .Release.Name "prod" }}{{ .Release.Name }}-{{ end }}{{ .Values.application.name }}.{{ .Values.domain.name }}"
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
-            pathType: {{ .pathType }}
-            {{- end }}
+          - path: /
+            pathType: Prefix
             backend:
-              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: {{ include "supabase.frontend.fullname" . }}
                 port:
-                  number: {{ $svcPort }}
-              {{- else }}
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-              {{- end }}
-          {{- end }}
-          # - path: /hmr
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: {{ $fullName }}
-          #       port:
-          #         number: 24678
-    {{- end }}
+                  number: {{ .Values.frontend.service.port }}
+{{- end }}
 {{- end }}

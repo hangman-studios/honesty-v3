@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.rest.service.type }}
   ports:
     - port: {{ .Values.rest.service.port }}
-      targetPort: 3000
+      targetPort: {{ .Values.rest.service.port }}
       protocol: TCP
       name: http
   selector:

@@ -42,6 +42,16 @@ spec:
                   name: {{ include "supabase.rest.fullname" $ }}
                   key: {{ $key }}
             {{- end }}
+            - name: DB_HOST
+              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DRIVER
+              value: postgres
+            - name: DB_NAME
+              value: app
+            - name: DB_SSL
+              value: disable # disable, allow, prefer, require, verify-ca, verify-full
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -57,7 +67,7 @@ spec:
             - name: PGRST_JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.jwt.secretName }}
+                  name: {{ include "supabase.secret.fullname" . }}-jwt
                   key: secret
           ports:
             - name: http

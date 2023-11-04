@@ -52,6 +52,16 @@ spec:
                 secretKeyRef:
                   name: {{ include "supabase.db.fullname" . }}-superuser
                   key: password
+            - name: DB_HOST
+              value: "{{ include "supabase.db.fullname" . }}-rw.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DRIVER
+              value: postgres
+            - name: DB_NAME
+              value: app
+            - name: DB_SSL
+              value: disable # disable, allow, prefer, require, verify-ca, verify-full
             - name: PG_META_DB_HOST
               value: $(DB_HOST)
             - name: PG_META_DB_PORT

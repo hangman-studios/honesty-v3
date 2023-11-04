@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.realtime.service.type }}
   ports:
     - port: {{ .Values.realtime.service.port }}
-      targetPort: 4000
+      targetPort: {{ .Values.realtime.service.port }}
       protocol: TCP
       name: http
   selector:
