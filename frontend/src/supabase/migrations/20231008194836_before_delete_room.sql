@@ -1,5 +1,5 @@
-create or replace function delete_room_members(name text)
-returns record
+create or replace function delete_room_members()
+returns trigger
 language 'plpgsql'
 security invoker
 as $$

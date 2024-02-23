@@ -418,7 +418,7 @@ frontend:
   enabled: true
   replicaCount: 1
   image:
-    repository: ghcr.io/jniclas/honesty
+    repository: ghcr.io/jniclas/polls
     pullPolicy: IfNotPresent
     tag: "1.0.5"
   nameOverride: ""
@@ -426,7 +426,7 @@ frontend:
   serviceAccount:
     create: true
     annotations: {}
-    name: "honesty"
+    name: ""
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}

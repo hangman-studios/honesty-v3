@@ -490,101 +490,6 @@ export interface Database {
     };
     Functions: {};
   };
-  realtime: {
-    Tables: {
-      schema_migrations: {
-        Row: {
-          version: number;
-          inserted_at: string | null;
-        };
-        Insert: {
-          version: number;
-          inserted_at?: string | null;
-        };
-        Update: {
-          version?: number;
-          inserted_at?: string | null;
-        };
-      };
-      subscription: {
-        Row: {
-          id: number;
-          entity: unknown;
-          filters: unknown[];
-          subscription_id: string;
-          claims: Json;
-          claims_role: unknown;
-          created_at: string;
-        };
-        Insert: {
-          id?: never;
-          entity: unknown;
-          filters?: unknown[];
-          subscription_id: string;
-          claims: Json;
-          claims_role?: unknown;
-          created_at?: string;
-        };
-        Update: {
-          id?: never;
-          entity?: unknown;
-          filters?: unknown[];
-          subscription_id?: string;
-          claims?: Json;
-          claims_role?: unknown;
-          created_at?: string;
-        };
-      };
-    };
-    Functions: {
-      quote_wal2json: {
-        Args: { entity: unknown };
-        Returns: string;
-      };
-      check_equality_op: {
-        Args: {
-          op: "eq" | "neq" | "lt" | "lte" | "gt" | "gte" | "in";
-          type_: unknown;
-          val_1: string;
-          val_2: string;
-        };
-        Returns: boolean;
-      };
-      cast: {
-        Args: { val: string; type_: unknown };
-        Returns: Json;
-      };
-      to_regrole: {
-        Args: { role_name: string };
-        Returns: unknown;
-      };
-      apply_rls: {
-        Args: { wal: Json; max_record_bytes: unknown };
-        Returns: unknown;
-      };
-      is_visible_through_filters: {
-        Args: { columns: unknown; filters: unknown };
-        Returns: boolean;
-      };
-      build_prepared_statement_sql: {
-        Args: {
-          prepared_statement_name: string;
-          entity: unknown;
-          columns: unknown;
-        };
-        Returns: string;
-      };
-      list_changes: {
-        Args: {
-          publication: unknown;
-          slot_name: unknown;
-          max_changes: number;
-          max_record_bytes: number;
-        };
-        Returns: unknown;
-      };
-    };
-  };
   extensions: {
     Tables: {};
     Functions: {
@@ -1699,6 +1604,10 @@ export interface Database {
         Returns: Json;
       };
     };
+  };
+  realtime: {
+    Tables: {};
+    Functions: {};
   };
   _realtime: {
     Tables: {

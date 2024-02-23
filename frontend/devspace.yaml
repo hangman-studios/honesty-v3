@@ -1,5 +1,5 @@
 version: v2beta1
-name: honesty-v3
+name: polls
 
 # This is a list of `pipelines` that DevSpace can execute (you can define your own)
 pipelines:
@@ -16,16 +16,18 @@ pipelines:
       run_dependencies --all       # 1. Deploy any projects this project needs (see "dependencies")
       ensure_pull_secrets --all    # 2. Ensure pull secrets
       create_deployments --all     # 3. Deploy Helm charts and manifests specfied as "deployments"
-      start_dev prod                # 4. Start dev mode "app" (see "dev" section)
+      start_dev dev                # 4. Start dev mode "app" (see "dev" section)
 
 
-# images:
-#   prod:
-#     image: ghcr.io/jniclas/honesty
+images:
+  dev:
+    image: ghcr.io/jniclas/polls
+    tags:
+    - 'dev-${devspace.git.branch}-#####'
 
 # This is a list of `deployments` that DevSpace can create for this project
 deployments:
-  prod:
+  dev:
     # This deployment uses `helm` but you can also define `kubectl` deployments or kustomizations
     helm:
       # We are deploying this project with the Helm chart you provided
@@ -37,10 +39,10 @@ deployments:
 
 # This is a list of `dev` containers that are based on the containers created by your deployments
 dev:
-  prod:
+  dev:
     # Replace the container image with this dev-optimized image (allows to skip image building during development)
     # devImage: ghcr.io/loft-sh/devspace-containers/typescript:18-alpine
-    imageSelector: ghcr.io/jniclas/honesty
+    imageSelector: ghcr.io/jniclas/polls
     # Sync files between the local filesystem and the development container
     sync:
       - path: ./:/home/app
