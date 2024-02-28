@@ -1,0 +1,16 @@
+---
+name: Workflow
+
+on:
+  push:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      branch-name:
+        required: false
+        type: string
+        default: ${{ github.ref }}
+
+jobs:
+  init:
+    uses: PhilippAuch/workflows/.github/workflows/init.yaml@main
