@@ -1,4 +1,5 @@
 ---
+# yamllint disable-file
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:

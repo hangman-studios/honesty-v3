@@ -1,3 +1,5 @@
+---
+# yamllint disable-file
 {{- if .Values.storage.enabled -}}
 apiVersion: apps/v1
 kind: Deployment

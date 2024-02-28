@@ -1,3 +1,5 @@
+---
+# yamllint disable-file
 {{- if .Values.storage.enabled -}}
 {{- if .Values.storage.persistence.enabled -}}
 apiVersion: v1
