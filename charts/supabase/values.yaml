@@ -1,3 +1,4 @@
+---
 # File structure of values.yaml:
 # |-- 1. Database
 # |-- 2. Studio
@@ -13,47 +14,47 @@ domain:
 
 application:
   name: polls
-  # is handled as subdomein. if helm release name is not "prod" 
+  # is handled as subdomein. if helm release name is not "prod"
   # it gets prefixed with release name
   # like "dev-polls.niiclas.de", "dev-polls-api.niiclas.de" etc.
 
 secret:
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
 
 # Optional: Postgres Database
-# A standalone Postgres database configured to work with Supabase services. 
-# You can spin up any other Postgres database container if required. 
+# A standalone Postgres database configured to work with Supabase services.
+# You can spin up any other Postgres database container if required.
 # If so, make sure to adjust DB_HOST accordingly to point to the right database service.
 db:
   enabled: false # Disable the database provisioning
-  secretName: "supabase-db" # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
+  secretName: 'supabase-db' # Still NEEDS TO BE DEFINED, even if database provisioning is disabled
   userName: postgres
   image:
     repository: supabase/postgres
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: 'latest'
   imagePullSecrets: []
   replicaCount: 2
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
   service:
     type: ClusterIP
     port: 5432
-  resources: 
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 256Mi
     requests:
       cpu: 200m
@@ -62,13 +63,13 @@ db:
     enabled: false
   storage:
     mountPath: /var/lib/postgresql/data
-    storageClassName: "openebs-jiva-csi-default"
-    annotations: 
-      helm.sh/resource-policy: "keep"
+    storageClassName: 'openebs-jiva-csi-default'
+    annotations:
+      helm.sh/resource-policy: 'keep'
     size: 5Gi
     accessModes:
       - ReadWriteOnce
-    class: ""
+    class: ''
   autoscaling:
     enabled: false
     minReplicas: 1
@@ -85,15 +86,15 @@ studio:
   image:
     repository: supabase/studio
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: 'latest'
   imagePullSecrets: []
   replicaCount: 1
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
@@ -103,9 +104,9 @@ studio:
   environment: {}
   ingress:
     enabled: false
-  resources: 
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 128Mi
     requests:
       cpu: 100m
@@ -126,15 +127,15 @@ auth:
   image:
     repository: supabase/gotrue
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: 'latest'
   imagePullSecrets: []
   replicaCount: 1
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
@@ -142,25 +143,25 @@ auth:
     type: ClusterIP
     port: 9999
   environment:
-    GOTRUE_API_HOST: "0.0.0.0"
-    GOTRUE_API_PORT: "9999"
-    GOTRUE_URI_ALLOW_LIST: "*"
-    GOTRUE_DISABLE_SIGNUP: "false"
+    GOTRUE_API_HOST: '0.0.0.0'
+    GOTRUE_API_PORT: '9999'
+    GOTRUE_URI_ALLOW_LIST: '*'
+    GOTRUE_DISABLE_SIGNUP: 'false'
     GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
     GOTRUE_JWT_ADMIN_ROLES: service_role
     GOTRUE_JWT_AUD: authenticated
-    GOTRUE_JWT_EXP: "3600"
-    GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
-    GOTRUE_MAILER_AUTOCONFIRM: "true"
-    GOTRUE_SMTP_ADMIN_EMAIL: "info@niiclas.de"
-    GOTRUE_SMTP_HOST: "email-smtp.eu-central-1.amazonaws.com"
-    GOTRUE_SMTP_PORT: "465"
-    GOTRUE_SMTP_SENDER_NAME: "Info"
-    GOTRUE_EXTERNAL_PHONE_ENABLED: "false"
-    GOTRUE_SMS_AUTOCONFIRM: "false"
-  resources: 
+    GOTRUE_JWT_EXP: '3600'
+    GOTRUE_EXTERNAL_EMAIL_ENABLED: 'true'
+    GOTRUE_MAILER_AUTOCONFIRM: 'true'
+    GOTRUE_SMTP_ADMIN_EMAIL: 'info@niiclas.de'
+    GOTRUE_SMTP_HOST: 'email-smtp.eu-central-1.amazonaws.com'
+    GOTRUE_SMTP_PORT: '465'
+    GOTRUE_SMTP_SENDER_NAME: 'Info'
+    GOTRUE_EXTERNAL_PHONE_ENABLED: 'false'
+    GOTRUE_SMS_AUTOCONFIRM: 'false'
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 128Mi
     requests:
       cpu: 100m
@@ -181,14 +182,14 @@ rest:
   image:
     repository: postgrest/postgrest
     pullPolicy: IfNotPresent
-    tag: "latest" 
+    tag: 'latest'
   imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
@@ -198,10 +199,10 @@ rest:
   environment:
     PGRST_DB_SCHEMA: public,storage
     PGRST_DB_ANON_ROLE: anon
-    PGRST_DB_USE_LEGACY_GUCS: "false"
-  resources: 
+    PGRST_DB_USE_LEGACY_GUCS: 'false'
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 128Mi
     requests:
       cpu: 100m
@@ -222,14 +223,14 @@ realtime:
   image:
     repository: supabase/realtime
     pullPolicy: IfNotPresent
-    tag: "v2.10.1"
+    tag: 'v2.10.1'
   imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: "" 
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext:
@@ -239,23 +240,23 @@ realtime:
     type: ClusterIP
     port: 4000
   environment:
-    PORT: "4000"
+    PORT: '4000'
     REPLICATION_MODE: RLS
-    REPLICATION_POLL_INTERVAL: "100"
-    SECURE_CHANNELS: "true"
+    REPLICATION_POLL_INTERVAL: '100'
+    SECURE_CHANNELS: 'true'
     SLOT_NAME: supabase_realtime_rls
-    TEMPORARY_SLOT: "true"
-    SECRET_KEY_BASE: "UpNVntn3cDxHJpq99YMc1T1AQgQpc8kfYTuRgBiYa15BLrx8etQoXz3gZv1/u2oq"
+    TEMPORARY_SLOT: 'true'
+    SECRET_KEY_BASE: 'UpNVntn3cDxHJpq99YMc1T1AQgQpc8kfYTuRgBiYa15BLrx8etQoXz3gZv1/u2oq'
     DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
     DB_ENC_KEY: supabaserealtime
     FLY_ALLOC_ID: fly123
     FLY_APP_NAME: realtime
     ERL_AFLAGS: -proto_dist inet_tcp
-    ENABLE_TAILSCALE: "false"
+    ENABLE_TAILSCALE: 'false'
     DNS_NODES: "''"
-  resources: 
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 256Mi
     requests:
       cpu: 200m
@@ -276,15 +277,15 @@ meta:
   image:
     repository: supabase/postgres-meta
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: 'latest'
   imagePullSecrets: []
-  replicaCount: 1  
-  nameOverride: ""
-  fullnameOverride: ""
+  replicaCount: 1
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
@@ -292,10 +293,10 @@ meta:
     type: ClusterIP
     port: 8080
   environment:
-    PG_META_PORT: "8080"
+    PG_META_PORT: '8080'
   resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 128Mi
     requests:
       cpu: 100m
@@ -308,7 +309,7 @@ meta:
     # targetMemoryUtilizationPercentage: 80
   nodeSelector: {}
   tolerations: []
-  affinity: {}    
+  affinity: {}
 
 # Storage Service
 storage:
@@ -316,15 +317,15 @@ storage:
   image:
     repository: supabase/storage-api
     pullPolicy: IfNotPresent
-    tag: "latest"
+    tag: 'latest'
   imagePullSecrets: []
   replicaCount: 1
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
@@ -341,20 +342,20 @@ storage:
     GLOBAL_S3_BUCKET: stub
   resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 128Mi
     requests:
       cpu: 100m
       memory: 128Mi
   persistence:
     enabled: true
-    storageClassName: "openebs-jiva-csi-default"
-    # annotations: 
+    storageClassName: 'openebs-jiva-csi-default'
+    # annotations:
     #   helm.sh/resource-policy: "keep"
     size: 5Gi
     accessModes:
       - ReadWriteOnce
-    class: ""
+    class: ''
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -371,34 +372,34 @@ kong:
   image:
     repository: kong
     pullPolicy: IfNotPresent
-    tag: "3.3"
+    tag: '3.3'
   imagePullSecrets: []
   replicaCount: 2
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
-  securityContext: 
+  securityContext:
     allowPrivilegeEscalation: false
     runAsUser: 0
   service:
     type: NodePort
     port: 8000
   environment:
-    KONG_DATABASE: "off"
+    KONG_DATABASE: 'off'
     KONG_DECLARATIVE_CONFIG: /usr/local/kong/kong.yml
     # https://github.com/supabase/cli/issues/14
     KONG_DNS_ORDER: LAST,A,CNAME
     KONG_PLUGINS: request-transformer,cors,key-auth,acl
   ingress:
     enabled: true
-  resources: 
+  resources:
     limits:
-      ephemeral-storage: "128Mi"
+      ephemeral-storage: '128Mi'
       memory: 512Mi
     requests:
       cpu: 100m
@@ -420,13 +421,13 @@ frontend:
   image:
     repository: ghcr.io/jniclas/polls
     pullPolicy: IfNotPresent
-    tag: "1.0.5"
-  nameOverride: ""
-  fullnameOverride: ""
+    tag: '1.0.5'
+  nameOverride: ''
+  fullnameOverride: ''
   serviceAccount:
     create: true
     annotations: {}
-    name: ""
+    name: ''
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}

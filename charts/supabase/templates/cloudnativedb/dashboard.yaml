@@ -1,3 +1,4 @@
+---
 #
 # Copyright The CloudNativePG Contributors
 #
@@ -22,7 +23,7 @@ metadata:
   labels:
     grafana_dashboard: '1'
   annotations:
-    k8s-sidecar-target-directory: "/tmp/dashboards/cnpg"
+    k8s-sidecar-target-directory: '/tmp/dashboards/cnpg'
 data:
   cnp.json: |-
     {{`{
