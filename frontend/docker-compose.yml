@@ -30,4 +30,5 @@ services:
       - ./src/types:/home/app/types
     working_dir: /home/app/src
     # command: bash -c "yarn install && rm -rf /tmp/nitro && yarn dev"
-    # command: bash -c "yarn supabase db push --db-url=$$DATABASE_URL && curl ${META_SERVICE_URL}generators/typescript > types/database.types.ts && yarn install && rm -rf /tmp/nitro && yarn dev" # yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
+    # command: bash -c "yarn supabase db push --db-url=$$DATABASE_URL && curl ${META_SERVICE_URL}generators/typescript > types/database.types.ts && yarn install && rm -rf /tmp/nitro && yarn dev"

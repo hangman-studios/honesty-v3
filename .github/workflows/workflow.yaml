@@ -13,4 +13,30 @@ on:
 
 jobs:
   init:
-    uses: PhilippAuch/workflows/.github/workflows/init.yaml@main
+    timeout-minutes: 60
+    runs-on: ubuntu-22.04
+
+    steps:
+      - run: env
+
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.1
+        with:
+          ref: ${{ inputs.branch-name }}
+          fetch-depth: '0'
+
+      - name: Check .env file existence
+        id: check_files
+        uses: andstor/file-existence-action@v3.0.0
+        with:
+          files: '.env'
+
+      - uses: cardinalby/export-env-action@2.2.2
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          envFile: '.env'
+          expand: 'true'
+          expandWithJobEnv: 'true'
+          export: 'true'
+
+      - run: env
