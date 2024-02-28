@@ -1,3 +1,4 @@
+---
 version: '3.8'
 
 services:
@@ -17,9 +18,9 @@ services:
     environment:
       HOST: 0.0.0.0
       DATABASE_URL: postgresql://supabase_admin:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
-      WEB_PUSH_PRIVATE_KEY: "AkniGohWNz9SqMSjEYfTXkpc7nX59rXPJnwry0tFM9Q"
-      NUXT_PUBLIC_WEB_PUSH_PUBLIC_KEY: "BMxJ3PKxHF6I78nmXaHcPsZd4aXSiNJs75Qq3hP5ES4pbLm4QQZ_PODPP3emkF1xZewAxZ2Jtb6OsBrMU9uZn6U"
-      WEB_PUSH_SUBJECT: "mailto:jniclasg@googlemail.com"
+      WEB_PUSH_PRIVATE_KEY: 'AkniGohWNz9SqMSjEYfTXkpc7nX59rXPJnwry0tFM9Q'
+      NUXT_PUBLIC_WEB_PUSH_PUBLIC_KEY: 'BMxJ3PKxHF6I78nmXaHcPsZd4aXSiNJs75Qq3hP5ES4pbLm4QQZ_PODPP3emkF1xZewAxZ2Jtb6OsBrMU9uZn6U'
+      WEB_PUSH_SUBJECT: 'mailto:jniclasg@googlemail.com'
       API_EXTERNAL_URL: https://supabase-api.niiclas.de
       SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlIiwKICAgICJpYXQiOiAxNjkxMTg2NDAwLAogICAgImV4cCI6IDE4NDkwMzkyMDAKfQ.Ztlvz0iioEr7cbhTWSaYDCaGpAUKqvzliQbgcyONJZM
       SUPABASE_SERVICE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAic2VydmljZV9yb2xlIiwKICAgICJpc3MiOiAic3VwYWJhc2UiLAogICAgImlhdCI6IDE2OTExODY0MDAsCiAgICAiZXhwIjogMTg0OTAzOTIwMAp9.JZPjeZUgWjvcoxNjrIyr3cFeKRhJU-N1xrEey5Thj8Q
@@ -30,4 +31,3 @@ services:
     working_dir: /home/app/src
     # command: bash -c "yarn install && rm -rf /tmp/nitro && yarn dev"
     # command: bash -c "yarn supabase db push --db-url=$$DATABASE_URL && curl ${META_SERVICE_URL}generators/typescript > types/database.types.ts && yarn install && rm -rf /tmp/nitro && yarn dev"
-

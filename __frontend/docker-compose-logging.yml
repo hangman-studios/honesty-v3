@@ -1,17 +1,18 @@
+---
 # Usage
 #   Start:          docker compose -f docker-compose.yml -f docker-compose-logging.yml up
 #   With helpers:   docker compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml -f docker-compose-logging.yml up
 #   Stop:           docker compose down
 #   Destroy:        docker compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml -f docker-compose-logging.yml down -v --remove-orphans
 # Please refer to https://supabase.com/docs/reference/self-hosting-analytics/introduction
-version: "3.8"
+version: '3.8'
 
 services:
   studio:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: studio
     depends_on:
       analytics:
@@ -25,7 +26,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: kong
     depends_on:
       analytics:
@@ -38,7 +39,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: auth
 
   rest:
@@ -48,7 +49,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: rest
 
   realtime:
@@ -58,7 +59,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: realtime
 
   storage:
@@ -68,7 +69,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: storage
 
   meta:
@@ -78,7 +79,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: meta
 
   functions:
@@ -88,14 +89,14 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: functions
 
   analytics:
     container_name: supabase-analytics
     image: supabase/logflare:1.0.2
     healthcheck:
-      test: [ "CMD", "curl", "http://localhost:4000/health" ]
+      test: ['CMD', 'curl', 'http://localhost:4000/health']
       timeout: 5s
       interval: 5s
       retries: 10
@@ -129,16 +130,7 @@ services:
     container_name: supabase-vector
     image: timberio/vector:0.28.1-alpine
     healthcheck:
-      test:
-        [
-
-          "CMD",
-          "wget",
-          "--no-verbose",
-          "--tries=1",
-          "--spider",
-          "http://localhost:${VECTOR_API_PORT}/health"
-        ]
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:${VECTOR_API_PORT}/health']
       timeout: 5s
       interval: 5s
       retries: 3
@@ -147,13 +139,13 @@ services:
       - ${VECTOR_API_PORT}:${VECTOR_API_PORT}
     volumes:
       - ./volumes/logs/vector.yml:/etc/vector/vector.yml:ro
-    command: [ "--config", "etc/vector/vector.yml" ]
+    command: ['--config', 'etc/vector/vector.yml']
   # Comment out everything below this point if you are using an external Postgres database
   db:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:${VECTOR_PORT}"
+        syslog-address: 'tcp://localhost:${VECTOR_PORT}'
         tag: db
     depends_on:
       vector:

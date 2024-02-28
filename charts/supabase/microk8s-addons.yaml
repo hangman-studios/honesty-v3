@@ -1,8 +1,9 @@
+---
 spec:
   template:
     spec:
       containers:
-          resources:
-            requests:
-              cpu: 60m
-              memory: 128Mi
+        resources:
+          requests:
+            cpu: 60m
+            memory: 128Mi
