@@ -13,7 +13,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/supabase": "1.1.7",
     "@types/node": "^20.11.30",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.1",
     "supabase": "^1.150.0"
   },
   "dependencies": {
