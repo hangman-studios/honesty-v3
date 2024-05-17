@@ -20,7 +20,7 @@ jobs:
       - run: env
 
       - name: Checkout repository
-        uses: actions/checkout@v4.1.5
+        uses: actions/checkout@v4.1.6
         with:
           ref: ${{ inputs.branch-name }}
           fetch-depth: '0'
