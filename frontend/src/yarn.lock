@@ -1363,10 +1363,10 @@
     vite-plugin-checker "^0.7.0"
     vue-bundle-renderer "^2.1.0"
 
-"@nuxtjs/supabase@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-1.3.2.tgz#b2f58559d013a48865710b0c1bb79b65fbbea3ba"
-  integrity sha512-/Ns7Fi5Ha8LxE/9lA4NqjuRGMIkpS8J7CoAUBtgmhWizO88IgH+oOb7sfRRU8mFVC8eJNZ8sN3FBAFCtA8jC8g==
+"@nuxtjs/supabase@1.3.4":
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-1.3.4.tgz#13ac9606379b68b93d6a80f4f0f161cf4fd9979a"
+  integrity sha512-DNWpheKPYXiWGYEFQGSES5yimMArG+LxIZ9o+88H2lOpad7B75qUWcGZt3TpPkrnc0WlJ0TSf5rWqfbh0ezfow==
   dependencies:
     "@nuxt/kit" "^3.12.3"
     "@supabase/ssr" "^0.4.0"
