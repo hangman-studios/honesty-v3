@@ -5599,10 +5599,10 @@ stylehacks@^7.0.4:
     browserslist "^4.23.3"
     postcss-selector-parser "^6.1.2"
 
-supabase@^1.207.9:
-  version "1.207.9"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.207.9.tgz#a03a0d324413f038f2b31a021d9bc17b25488607"
-  integrity sha512-BJPwsAd2UBIpQawcQV3/xKHEZ8YrrkHYpgibxCZbG+RuxuhTtkHG7zR4I3LylIIEwcKp3hmDKu/hO1m2NT5RXA==
+supabase@^1.219.2:
+  version "1.219.2"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.219.2.tgz#adb594247f2361d5cd50cf57913243eaa12342c0"
+  integrity sha512-bngNxjoiU2EHbQ4Cxfrft/ZnYnYdlWfpLcye3KCyJFQhTl3ucpygKymJZiasJl0xdN+hR98TdrHp7WHTuf9ztQ==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
