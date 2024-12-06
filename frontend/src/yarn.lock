@@ -5876,10 +5876,10 @@ stylehacks@^7.0.4:
     browserslist "^4.23.3"
     postcss-selector-parser "^6.1.2"
 
-supabase@^1.223.10:
-  version "1.223.10"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.223.10.tgz#6654e01b6f2612790f167085f818ca7195b5eab5"
-  integrity sha512-a5Wi562n0eiV3w359qiCjewyVad688Z3+JHdvLybdlITrwvNIcR6QYqRR6EzjKY5V/sNCqC+5sNf40wDYAYcHg==
+supabase@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.0.0.tgz#eb722246192f8f9efbda71eb76f204f35d1b7d38"
+  integrity sha512-2Z42hoKgmjMjFMo3pVdVvV8nIDly/ac/v4ZcHSdDJohf+2Y+/OJ1sHGoIvm6v3N4dAGKe3SCovS3+HYFGL1L7w==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
