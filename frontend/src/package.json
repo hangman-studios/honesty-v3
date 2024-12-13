@@ -12,7 +12,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/supabase": "1.4.3",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "nuxt": "^3.14.1592",
     "supabase": "^2.0.0"
   },
