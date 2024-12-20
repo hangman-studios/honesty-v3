@@ -5905,10 +5905,10 @@ stylehacks@^7.0.4:
     browserslist "^4.23.3"
     postcss-selector-parser "^6.1.2"
 
-supabase@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.0.0.tgz#eb722246192f8f9efbda71eb76f204f35d1b7d38"
-  integrity sha512-2Z42hoKgmjMjFMo3pVdVvV8nIDly/ac/v4ZcHSdDJohf+2Y+/OJ1sHGoIvm6v3N4dAGKe3SCovS3+HYFGL1L7w==
+supabase@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.1.1.tgz#540717c26798d5afab87b5597f403d7f80913ccc"
+  integrity sha512-KPP4LrvMmu6IWIcqSOcPbepTGT2Fv05TMiYwbcEaKgCVUznDNtlyXQTImJhjP+8FhNuJ+tF9SLoQgMQqDei+jA==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
