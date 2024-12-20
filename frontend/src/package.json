@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxtjs/supabase": "1.4.4",
+    "@nuxtjs/supabase": "1.4.5",
     "@types/node": "^22.10.2",
     "nuxt": "^3.14.1592",
     "supabase": "^2.1.1"
