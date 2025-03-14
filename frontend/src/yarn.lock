@@ -909,19 +909,19 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.2.tgz#5749f04df13bda4c863338d8dabaf370f45ef7c7"
   integrity sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==
 
-"@nuxt/devtools-kit@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-2.2.1.tgz#82628306ce143e601c61b8d3d91c2b1a884970f9"
-  integrity sha512-6txRZPOs+YmiuqjaqZy0rls0CjcmNaJPMITZsLS3hTfKAsKOEMslPjgr0jnf4fpFujmkxFZc10txYlG24JZCAA==
+"@nuxt/devtools-kit@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-2.3.0.tgz#4a71b013c9f3d611d7bf49677a5a498647c41a6b"
+  integrity sha512-XKf5czeVLVDi1v602+NliVg80Ma9FyxXc9UmRz2mll/WsXTHZrPzCg94HXJPECv3S5vexTHmmBTyIrMIsqKFmw==
   dependencies:
-    "@nuxt/kit" "^3.15.4"
-    "@nuxt/schema" "^3.15.4"
+    "@nuxt/kit" "^3.16.0"
+    "@nuxt/schema" "^3.16.0"
     execa "^9.5.2"
 
-"@nuxt/devtools-wizard@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-2.2.1.tgz#8f2ac67fbb7a824690de992a44af87b222c0989e"
-  integrity sha512-tJGIwFxwIOsDdpefnSPhiVJEjBC5Kr88EORV6PRYVQRPZThiO8if5UM0qhhkwoDYJ5U21nZpyIzKuCQ6svo9vA==
+"@nuxt/devtools-wizard@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-2.3.0.tgz#922e6714c15d213c107125be1bfc84ec48dcdb59"
+  integrity sha512-DAZG5Fk3Jey8Sn9ADjwf2m5FBC9Ga2x4vCOc47Q1aD2X8TvMnvufpixk6saE4Ns8tEITNbIA7NnWdNc07uQ2iw==
   dependencies:
     consola "^3.4.0"
     diff "^7.0.0"
@@ -933,13 +933,13 @@
     semver "^7.7.1"
 
 "@nuxt/devtools@^2.2.1", "@nuxt/devtools@latest":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-2.2.1.tgz#63f52871b6f3c1515b57579c8504fe0a07275dc6"
-  integrity sha512-JkFRYLWFoklBuf+Zv6GwS9HPOFMuN3nomApWCnsNg8H7XqlFNIvB+wetmm6+u+43bNApjqE0ne7Y//o0V6FSaA==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-2.3.0.tgz#c7fb80fe0eb75646e9f13554f9f537543d20bdc5"
+  integrity sha512-LOFpzKjev5CQAR5TQ0eOSO2oFhp0Zczxn9XhxPgyDFCev3es+r0ytMtTgHalWw0viePAX9DY/Hs8f23efna2JQ==
   dependencies:
-    "@nuxt/devtools-kit" "2.2.1"
-    "@nuxt/devtools-wizard" "2.2.1"
-    "@nuxt/kit" "^3.15.4"
+    "@nuxt/devtools-kit" "2.3.0"
+    "@nuxt/devtools-wizard" "2.3.0"
+    "@nuxt/kit" "^3.16.0"
     "@vue/devtools-core" "^7.7.2"
     "@vue/devtools-kit" "^7.7.2"
     birpc "^2.2.0"
@@ -966,11 +966,11 @@
     structured-clone-es "^1.0.0"
     tinyglobby "^0.2.12"
     vite-plugin-inspect "^11.0.0"
-    vite-plugin-vue-tracer "^0.1.0"
+    vite-plugin-vue-tracer "^0.1.1"
     which "^5.0.0"
     ws "^8.18.1"
 
-"@nuxt/kit@3.16.0", "@nuxt/kit@^3.15.4":
+"@nuxt/kit@3.16.0", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.0":
   version "3.16.0"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.16.0.tgz#ce78cfd7aac9d43596d36a078e52b4ba610a7c0a"
   integrity sha512-yPfhk58BG6wJhELkGOTCOlkMDbZkizk3IaINcyTKm+hBKiK3SheLt7S9HStNL+qZSfH2Cf7A8sYp6M72lOIEtA==
@@ -998,7 +998,7 @@
     unimport "^4.1.2"
     untyped "^2.0.0"
 
-"@nuxt/schema@3.16.0", "@nuxt/schema@^3.15.4":
+"@nuxt/schema@3.16.0", "@nuxt/schema@^3.16.0":
   version "3.16.0"
   resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.16.0.tgz#bec2f4c61977ba8d7e5ca26f938be3043af7097c"
   integrity sha512-uCpcqWO6C4P5c4vi1/sq5GyajO0EOp+ZWFtPrnKaJ1pXAhA+W1aMVxAjfi2f18QMJHuRXBz1TouFg1RmWA6FuA==
@@ -5697,7 +5697,7 @@ vite-plugin-inspect@^11.0.0:
     unplugin-utils "^0.2.0"
     vite-dev-rpc "^1.0.7"
 
-vite-plugin-vue-tracer@^0.1.0:
+vite-plugin-vue-tracer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/vite-plugin-vue-tracer/-/vite-plugin-vue-tracer-0.1.1.tgz#cf1195f82320a52ca7bc90f7f0ff9c85d01a0f11"
   integrity sha512-8BuReHmbSPd6iRQDQhlyK5+DexY1Hmb4K0GUVo9Te1Yaz8gyOZspBm9qdG1SvebdSIKw3WNlzpdstJ47TJ4bOw==
