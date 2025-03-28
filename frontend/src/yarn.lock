@@ -5336,10 +5336,10 @@ stylehacks@^7.0.4:
     browserslist "^4.23.3"
     postcss-selector-parser "^6.1.2"
 
-supabase@^2.19.7:
-  version "2.19.7"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.19.7.tgz#7a2b754fb548616745eca88ec9334a84514fa76d"
-  integrity sha512-+Qu5xHvk/CnAHb5iDpCWCX0SdwFR5smpTG6VUSTw/T8WxCDDQsIb2mui2pu18wqKOZ0NLs/ZTDDb2+yPejTRBQ==
+supabase@^2.20.5:
+  version "2.20.5"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.20.5.tgz#8d8a92bf00e002cece6553262dd04b6cc58a2057"
+  integrity sha512-3d6YbIqEzLatw0BpYPSeQwAaVQY9WUBkGiy7a+DLJPN17UsW5KYNEik3mO8PeX1a7TaJvtWxDs/Ve05pxfvldw==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
