@@ -5211,10 +5211,10 @@ stylehacks@^7.0.4:
     browserslist "^4.23.3"
     postcss-selector-parser "^6.1.2"
 
-supabase@^2.20.5:
-  version "2.20.5"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.20.5.tgz#8d8a92bf00e002cece6553262dd04b6cc58a2057"
-  integrity sha512-3d6YbIqEzLatw0BpYPSeQwAaVQY9WUBkGiy7a+DLJPN17UsW5KYNEik3mO8PeX1a7TaJvtWxDs/Ve05pxfvldw==
+supabase@^2.20.12:
+  version "2.20.12"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.20.12.tgz#94b0f9950d66ae6b145f669010fa3196da6c8419"
+  integrity sha512-8UTRRvQdMsfs7jcHPDfv6cFYwrar5OyqidtB8GSdPCaKfEP+0n4TwCVwu7H0tDCbCYs28HDZDzQAZ8Ox+aVIiA==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
