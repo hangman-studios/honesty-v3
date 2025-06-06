@@ -6252,10 +6252,10 @@ stylehacks@^7.0.5:
     browserslist "^4.24.5"
     postcss-selector-parser "^7.1.0"
 
-supabase@^2.23.4:
-  version "2.23.4"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.23.4.tgz#b16bfb3041dfa7ef0cc5fc01b2104b345ceb4b50"
-  integrity sha512-zuGxvy9qQqZtbc3ehZ2pP6j0r/dcNOW0hU93XPBJ7zSWfLlmQ/erlQHa/o36R4f2zpfR0REVF6023yuNCUdpMA==
+supabase@^2.24.3:
+  version "2.24.3"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.24.3.tgz#549cc1f9a0e4b665fc25f9c6ae24e9149c75759e"
+  integrity sha512-mh9pi4C5pM159GyYE+Rv9qL8kg1kqzimQ4FBr6UH/WhzB/VcDaA+vpn/VeRC3CGVKr+d89Ra5MjDWg+/UoPpXg==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
