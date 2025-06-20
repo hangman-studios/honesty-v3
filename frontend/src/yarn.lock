@@ -6098,10 +6098,10 @@ stylehacks@^7.0.5:
     browserslist "^4.24.5"
     postcss-selector-parser "^7.1.0"
 
-supabase@^2.24.3:
-  version "2.24.3"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.24.3.tgz#549cc1f9a0e4b665fc25f9c6ae24e9149c75759e"
-  integrity sha512-mh9pi4C5pM159GyYE+Rv9qL8kg1kqzimQ4FBr6UH/WhzB/VcDaA+vpn/VeRC3CGVKr+d89Ra5MjDWg+/UoPpXg==
+supabase@^2.26.9:
+  version "2.26.9"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.26.9.tgz#58955d2eb8708353841507035e4bfa819ac5e686"
+  integrity sha512-wHl7HtAD2iHMVXL8JZyfSjdI0WYM7EF0ydThp1tSvDANaD2JHCZc8GH1NdzglbwGqdHmjCYeSZ+H28fmucYl7Q==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
