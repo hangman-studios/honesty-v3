@@ -14,7 +14,7 @@
     "@nuxtjs/supabase": "1.5.3",
     "@types/node": "^24.0.13",
     "nuxt": "^4.0.0",
-    "supabase": "^2.30.4"
+    "supabase": "^2.31.4"
   },
   "dependencies": {
     "web-push": "^3.6.7"
