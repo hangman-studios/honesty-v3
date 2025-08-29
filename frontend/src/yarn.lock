@@ -6545,10 +6545,10 @@ stylehacks@^7.0.5:
     browserslist "^4.24.5"
     postcss-selector-parser "^7.1.0"
 
-supabase@^2.34.3:
-  version "2.34.3"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.34.3.tgz#42c8f68d99f578fc16756e3229cf1794036eccc6"
-  integrity sha512-nMO7MFkw3ze/ScRt8S7AssNuBDbFeEsu2MTF2hol5T8HoAz5WgoLhhwCL5NUh8G0Jigpg88QIaDEPhHdNvv9TQ==
+supabase@^2.39.2:
+  version "2.39.2"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.39.2.tgz#ce9b6c239e61409499fffac9022dcab4855ff7a2"
+  integrity sha512-/LDPMDIDmuDwj3UsKVw+wA+uHF7QhEF8xgJnKpnk1vqVdr+lA6xRSwWQzgaNuwPj5YPt6+78JKp+wzKziTsRVw==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
