@@ -715,18 +715,18 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.2.tgz#5749f04df13bda4c863338d8dabaf370f45ef7c7"
   integrity sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==
 
-"@nuxt/devtools-kit@2.6.3":
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-2.6.3.tgz#373b0d81fa20c69f15dd2beeb30eeef18d83ff92"
-  integrity sha512-cDmai3Ws6AbJlYy1p4CCwc718cfbqtAjXe6oEc6q03zoJnvX1PsvKUfmU+yuowfqTSR6DZRmH4SjCBWuMjgaKQ==
+"@nuxt/devtools-kit@2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-2.6.4.tgz#f2ab11af5f9f9b54df2dbdfcd05488319ac5b668"
+  integrity sha512-UWP4F4K9DA6vkv8DIClimgLrzKdpqQo0K7Gtj8bVSWBlrN+jk5jr//KYQ4NXhky/Y0C2nnYrW6DPGi4EXiFTTQ==
   dependencies:
     "@nuxt/kit" "^3.18.1"
     execa "^8.0.1"
 
-"@nuxt/devtools-wizard@2.6.3":
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-2.6.3.tgz#b8f3c0765f53cf2efaa49b7a603e0666c584bb58"
-  integrity sha512-FWXPkuJ1RUp+9nWP5Vvk29cJPNtm4OO38bgr9G8vGbqcRznzgaSODH/92c8sm2dKR7AF+9MAYLL+BexOWOkljQ==
+"@nuxt/devtools-wizard@2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools-wizard/-/devtools-wizard-2.6.4.tgz#efa1ce6600a5855a8be826023cafb00cb57094ff"
+  integrity sha512-BIBg4/FxrQtRRqSzDwakqNxSLC7e7bMSawE+X8Tq2sbz9vv+gA1aATdNcjF7g7BoZ8E/RreZB6Jy3pOxFPLEWA==
   dependencies:
     consola "^3.4.2"
     diff "^8.0.2"
@@ -738,12 +738,12 @@
     semver "^7.7.2"
 
 "@nuxt/devtools@^2.6.3", "@nuxt/devtools@latest":
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-2.6.3.tgz#0d039e452a94d89eb645e750b560b22527827bce"
-  integrity sha512-n+8we7pr0tNl6w+KfbFDXZsYpWIYL4vG/daIdRF66lQ6fLyQy/CcxDAx8+JNu3Ew96RjuBtWRSbCCv454L5p0Q==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@nuxt/devtools/-/devtools-2.6.4.tgz#7a28e2f3025f648d67b830b060c2fe4c345e9857"
+  integrity sha512-ymqRjlShXCfUfTc+fnADG7XOV13toMiPc5loi+6lYjCmu1+rOI8K3i8R/8DWgGxr8MK7d5L4szl1xZlMQ4WzlA==
   dependencies:
-    "@nuxt/devtools-kit" "2.6.3"
-    "@nuxt/devtools-wizard" "2.6.3"
+    "@nuxt/devtools-kit" "2.6.4"
+    "@nuxt/devtools-wizard" "2.6.4"
     "@nuxt/kit" "^3.18.1"
     "@vue/devtools-core" "^7.7.7"
     "@vue/devtools-kit" "^7.7.7"
