@@ -5493,10 +5493,10 @@ stylehacks@^7.0.5:
     browserslist "^4.24.5"
     postcss-selector-parser "^7.1.0"
 
-supabase@^2.75.5:
-  version "2.75.5"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.75.5.tgz#8b37b4e11df5d2e018c619adcb3fa71424b3eec7"
-  integrity sha512-gjCFvMTJ51HDPEGkvLroGgA4GEB5VhU136Gc/9BZgaHogqAKvTs7M28xlPcG5flGzmZjiqlNP1PcgzuQdw9fxQ==
+supabase@^2.76.8:
+  version "2.76.8"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.76.8.tgz#f04f47ce296f230d5afeb02a72fb54ccda73bc7d"
+  integrity sha512-Mhu3KNioxSjymdaHu6hQ/qZKzu/v1AzIEnYOOZ9+ATtSfrQNjqiMg9sivKx1vToKqcDBm3BXjmg8OX65sZW2Pw==
   dependencies:
     bin-links "^6.0.0"
     https-proxy-agent "^7.0.2"
