@@ -1,4 +1,4 @@
-FROM node:25.7
+FROM node:25.8
 
 ENV HOST=0.0.0.0
 
