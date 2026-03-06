@@ -5350,15 +5350,15 @@ stylehacks@^7.0.5:
     browserslist "^4.24.5"
     postcss-selector-parser "^7.1.0"
 
-supabase@^2.76.15:
-  version "2.76.15"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.76.15.tgz#2f4a86c3716feed1cb5b0ecd50ab7ad88021fdfa"
-  integrity sha512-m69o1XPAzZaIWfQiEeT+KY/Ci3OSA663RyoH9xECbXSxhr7dsipLCpCqT1E4MCob0mMhHh/7A+Eltx4y1qSwiQ==
+supabase@^2.77.0:
+  version "2.77.0"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.77.0.tgz#9762682c2e4e9de4bc9a8af63b7dcce8c230162b"
+  integrity sha512-CTjEkiuXV3ITyhYZm0k3dx/jW4qGTGxVNjInQWk2KO+/dLCpNS6dvX/NKKZQHMb3O9Pyj/3w0XKGusliCizbBg==
   dependencies:
     bin-links "^6.0.0"
     https-proxy-agent "^7.0.2"
     node-fetch "^3.3.2"
-    tar "7.5.9"
+    tar "7.5.10"
 
 superjson@^2.2.2:
   version "2.2.2"
@@ -5409,10 +5409,10 @@ tar-stream@^3.0.0:
     fast-fifo "^1.2.0"
     streamx "^2.15.0"
 
-tar@7.5.9, tar@^7.4.0:
-  version "7.5.9"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-7.5.9.tgz#817ac12a54bc4362c51340875b8985d7dc9724b8"
-  integrity sha512-BTLcK0xsDh2+PUe9F6c2TlRp4zOOBMTkoQHQIWSIzI0R7KG46uEwq4OPk2W7bZcprBMsuaeFsqwYr7pjh6CuHg==
+tar@7.5.10, tar@^7.4.0:
+  version "7.5.10"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-7.5.10.tgz#2281541123f5507db38bc6eb22619f4bbaef73ad"
+  integrity sha512-8mOPs1//5q/rlkNSPcCegA6hiHJYDmSLEI8aMH/CdSQJNWztHC9WHNam5zdQlfpTwB9Xp7IBEsHfV5LKMJGVAw==
   dependencies:
     "@isaacs/fs-minipass" "^4.0.0"
     chownr "^3.0.0"
