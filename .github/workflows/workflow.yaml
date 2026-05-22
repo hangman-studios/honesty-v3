@@ -31,7 +31,7 @@ jobs:
         with:
           files: '.env'
 
-      - uses: cardinalby/export-env-action@2.2.2
+      - uses: cardinalby/export-env-action@2.2.3
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           envFile: '.env'
