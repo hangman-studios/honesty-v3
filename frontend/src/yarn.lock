@@ -2161,45 +2161,45 @@
   dependencies:
     tslib "2.8.1"
 
-"@supabase/cli-darwin-arm64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-darwin-arm64/-/cli-darwin-arm64-2.107.0.tgz#d3be0d3921ccaeee04502f524f3331e9646f46fe"
-  integrity sha512-930MojHei14+PrGNF0QzlPJAjOYilCofgO9aTtKiQ6x36ZUI7dc4ujl5VzccC/19ex/f4ird0lH1d2U92MwDqQ==
+"@supabase/cli-darwin-arm64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-darwin-arm64/-/cli-darwin-arm64-2.108.0.tgz#672e6738c970ce3832feebee62f623ede7b17f63"
+  integrity sha512-QHuH0hVDqu10qc8me0FL8YfaDmXslQp4s7/WwD06O5hR1+Zj12FiWLcXgyWUHZoHsZzAA3ZVi2XpU7rBkJFWIQ==
 
-"@supabase/cli-darwin-x64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-darwin-x64/-/cli-darwin-x64-2.107.0.tgz#e21679ac1142be3761949a7517aec43ac5b06f2e"
-  integrity sha512-qcnichkHiCCNybtCqoeqYO6q8WuTxilaah18QilZskEM+zCSdV5rOXXfeF1BPexRxsvGYbghZ+fEQfWp7+lOUQ==
+"@supabase/cli-darwin-x64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-darwin-x64/-/cli-darwin-x64-2.108.0.tgz#fd0a1beeaeffbc2edd7783bce4ed290679f5364a"
+  integrity sha512-+qFUFqm/3vntX52ZKO6rYbJzWF/+mIoJLRWWckDu3jf9A7VeQskpIs2gxmW2XLwH0LWy8CEml8UzD8WhKn7fuw==
 
-"@supabase/cli-linux-arm64-musl@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.107.0.tgz#65be37181da610e9ca8a3b9124a9cac5876cc286"
-  integrity sha512-5se1bYRIzivL+ehImnwFjBpzKZ+AwLS6/cBg6lvJOJdWatuaK9Edu6wOZAmPjVMy4vZRJ27tdL+3F7N+Vk64AA==
+"@supabase/cli-linux-arm64-musl@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-arm64-musl/-/cli-linux-arm64-musl-2.108.0.tgz#b63c7a9b36a112f2e9bd90ecd52d831efba59839"
+  integrity sha512-6zFFvvdz8Ty4Q9qiAkjgiS01z1uOuQdageC341HzAD5Ev50ringzzu9SQtDSDy2QeD04YWjvENvZWgsemVwffA==
 
-"@supabase/cli-linux-arm64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-arm64/-/cli-linux-arm64-2.107.0.tgz#2c4de2fc69d19396be8c76fa770dffa32a781172"
-  integrity sha512-an0dsOhPcLQXZ0sFEBm6NU1HFUjXCStHxetfJvgt4u7SiH/EyDMLfDvV7W9ef56bgG+3hoWHtih2Kplj3cecQA==
+"@supabase/cli-linux-arm64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-arm64/-/cli-linux-arm64-2.108.0.tgz#7223a213a0a8a3fbba9a906cdfae110c32e2ad9d"
+  integrity sha512-gC2ivtE0/DDNSJX7Q148HeylI+Mqv8eWr86j7FsnoRBdLjVQyVEZIrl32+avhGQO349QiIaFI1eDIzHr9sczDw==
 
-"@supabase/cli-linux-x64-musl@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-x64-musl/-/cli-linux-x64-musl-2.107.0.tgz#c0df642479029f267b5d29429a600ab8cc75a6a9"
-  integrity sha512-gXDzvDsmmJw9HbeVRFD6xboGwbu/cpBp84ZESEcXKyB8Onvs3igWKwoXMofx+ppFM1EaZb/flTwJ77b19EMD1A==
+"@supabase/cli-linux-x64-musl@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-x64-musl/-/cli-linux-x64-musl-2.108.0.tgz#342453d9631f38e7fbd3851b72f77b19d1c2543c"
+  integrity sha512-X3cCfgVprMDqN9QFVXzoYwV0E6gQWdUmdbI7ro8vam0/JaoLunNNdAErVmyqGKfrAVu01X6EdEeZAdfgucIN6w==
 
-"@supabase/cli-linux-x64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-x64/-/cli-linux-x64-2.107.0.tgz#e1e4306ca9af50f965b8dc614cbb4da634ed7a3d"
-  integrity sha512-8ttnpfBFEXk0JFmH6gw8ZCVcMa/UNH1sD6iG9PQLbK2eXdZ6kDIzGs5g+CEvxZ3j6HxEIYn9h9rfxoqGoBUgwA==
+"@supabase/cli-linux-x64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-linux-x64/-/cli-linux-x64-2.108.0.tgz#35bf18e841bec196f57ec71218f14716062f1b87"
+  integrity sha512-umNOdOmUznlLJlE3j5nHabwm7aH07GZdk2l7kTFUYJhUyLrcIk9bqc7kUw5bjLCjiuIxuNPTfElBkE1GFhBKPw==
 
-"@supabase/cli-windows-arm64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-windows-arm64/-/cli-windows-arm64-2.107.0.tgz#ec16fa0725397ea0111198bf6362468deb9618e5"
-  integrity sha512-V/4q5dbDgBQXhDAJaHamTm9u/kY2UJ4nNibVKOYMaLh9q7H74b8unteJ+rYHSwWZy0EIT8DTDryGP6xatKQicw==
+"@supabase/cli-windows-arm64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-windows-arm64/-/cli-windows-arm64-2.108.0.tgz#bd1e0b26faaee0baec2d373e4e28e4cd845d6286"
+  integrity sha512-yd9lYoeLRdQ3dukQAFCqmAZ7wQebbSmZW5IGeEfmcWY3efXT5Y2Dxx2R8CidO32DuJ8SFTtgzhc9lAu3U5WP5Q==
 
-"@supabase/cli-windows-x64@2.107.0":
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/@supabase/cli-windows-x64/-/cli-windows-x64-2.107.0.tgz#e84072a465facd509b5b7110ca909d3725e0df59"
-  integrity sha512-ciDDFUGHt6bFjtVD00cojFhB5oscZAyjPo2vg94RGUeKHXx1zo/UzfMvUlCA32y5b5KONZ4TKStCHhlFK7Clrw==
+"@supabase/cli-windows-x64@2.108.0":
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/@supabase/cli-windows-x64/-/cli-windows-x64-2.108.0.tgz#e8dbdf351422ec8e4dda3c8c24ff86bb52f40e4c"
+  integrity sha512-I24rpbFye5vkoFzuxH7rB4BCSvHY+Eg1LTxbvxQ7IWZTM7xRwvqXgsvmqQpwctwGsIbWZIl6DQ3T39x8yV7F2Q==
 
 "@supabase/functions-js@2.106.1":
   version "2.106.1"
@@ -4020,6 +4020,11 @@ jiti@^2.4.2, jiti@^2.6.1, jiti@^2.7.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.7.0.tgz#974228f2f4ca2bc21885a1797b45fea68e950c64"
   integrity sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==
 
+jose@^6.2.3:
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-6.2.3.tgz#0975197ad973251221c658a3cddc4b951a250c2d"
+  integrity sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw==
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5651,19 +5656,21 @@ stylehacks@^8.0.0:
     browserslist "^4.28.2"
     postcss-selector-parser "^7.1.1"
 
-supabase@^2.107.0:
-  version "2.107.0"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.107.0.tgz#bcef3ca3630429988070b063fab76a535e52fff6"
-  integrity sha512-qYAbm3D//buhnY5v4L//IrBQhowN2Jd2kx16hNyOfu0+TVuWVIR1L5WsS/YOk+UJh3Ch5ABmqKebWpwn1p0ysg==
+supabase@^2.108.0:
+  version "2.108.0"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-2.108.0.tgz#327b59dd11163d3a9096b5289f894c8197b70e9d"
+  integrity sha512-NofgZCCWJTZIVVf3m9mMRr3oVZROeBSTJB4bAmP1MvmhO+jUq7U+HvF1NPqFdvmZA5PKx4vRtpjvg7g6LbeD+w==
+  dependencies:
+    jose "^6.2.3"
   optionalDependencies:
-    "@supabase/cli-darwin-arm64" "2.107.0"
-    "@supabase/cli-darwin-x64" "2.107.0"
-    "@supabase/cli-linux-arm64" "2.107.0"
-    "@supabase/cli-linux-arm64-musl" "2.107.0"
-    "@supabase/cli-linux-x64" "2.107.0"
-    "@supabase/cli-linux-x64-musl" "2.107.0"
-    "@supabase/cli-windows-arm64" "2.107.0"
-    "@supabase/cli-windows-x64" "2.107.0"
+    "@supabase/cli-darwin-arm64" "2.108.0"
+    "@supabase/cli-darwin-x64" "2.108.0"
+    "@supabase/cli-linux-arm64" "2.108.0"
+    "@supabase/cli-linux-arm64-musl" "2.108.0"
+    "@supabase/cli-linux-x64" "2.108.0"
+    "@supabase/cli-linux-x64-musl" "2.108.0"
+    "@supabase/cli-windows-arm64" "2.108.0"
+    "@supabase/cli-windows-x64" "2.108.0"
 
 supports-color@^10.0.0:
   version "10.0.0"
